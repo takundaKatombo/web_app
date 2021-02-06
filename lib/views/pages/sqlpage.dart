@@ -21,7 +21,7 @@ class SQLPage extends StatelessWidget {
       child: Center(child: Text('Title Label ')),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child:Center(child: Row(children: [Text('Title Label'),Container(child: TextField(),decoration: BoxDecoration(
+      child:Center(child: Row(children: [Text('Title Label'),Container(width:MediaQuery.of(context).size.width*0.7,child: TextField(),decoration: BoxDecoration(
       border: Border.all(
         color: Colors.blue,
       ),
@@ -29,7 +29,7 @@ class SQLPage extends StatelessWidget {
     ),)],)),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Center(child: Row(children: [Text('Title Label'),Container(
+      child: Center(child: Row(children: [Text('Title Label'),Container(width:MediaQuery.of(context).size.width*0.7,
         child: TextField(),decoration: BoxDecoration(
       border: Border.all(
         color: Colors.blue,

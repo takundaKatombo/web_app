@@ -8,7 +8,7 @@ class CustomTabView extends StatefulWidget {
     final ValueChanged<int> onPositionChange;
     final ValueChanged<double> onScroll;
     final int initPosition;
-
+ 
     CustomTabView({
       @required this.itemCount,
       @required this.tabBuilder,
