@@ -12,42 +12,42 @@ class SQLPage extends StatelessWidget {
       child: Center(child: Text('Please Enter The Sql Below')),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Center(child: Text('Title Label')),
+      child: Center(child: Text('Tips')),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(child: Text('Text Here')),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Center(child: Text('Title Label ')),
+      child: Center(child: Text('Examples ')),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child:Center(child: Row(children: [Text('Title Label'),Container(width:MediaQuery.of(context).size.width*0.7,child: TextField(),decoration: BoxDecoration(
+      child:Center(child: Row(children: [Text('General Update'),Container(width:MediaQuery.of(context).size.width*0.7,child: Text('Sample Query'),decoration: BoxDecoration(
       border: Border.all(
         color: Colors.blue,
       ),
-      borderRadius: BorderRadius.circular(10.0),
+      // borderRadius: BorderRadius.circular(10.0),
     ),)],)),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Center(child: Row(children: [Text('Title Label'),Container(width:MediaQuery.of(context).size.width*0.7,
-        child: TextField(),decoration: BoxDecoration(
+      child: Center(child: Row(children: [Text('General Update'),Container(width:MediaQuery.of(context).size.width*0.7,
+        child: Text('Sample Text '),decoration: BoxDecoration(
       border: Border.all(
         color: Colors.blue,
       ),
-      borderRadius: BorderRadius.circular(10.0),
+      // borderRadius: BorderRadius.circular(10.0),
     ),
-      )],)),
+      ),],),),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child:Center(child: Container(height:MediaQuery.of(context).size.height*0.2,decoration: BoxDecoration(
+      child:Center(child: Container(child:Text('Results Here'),height:MediaQuery.of(context).size.height*0.2,decoration: BoxDecoration(
       border: Border.all(
         color: Colors.blue,
       ),
-      borderRadius: BorderRadius.circular(10.0),
+      // borderRadius: BorderRadius.circular(10.0),
     ),)),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child: TextButton(onPressed: (){}, child: Text('Execute')),
+      child: ElevatedButton(onPressed: (){}, child: Text('Execute')),
     ),Spacer(),Container()],);
   }
 }

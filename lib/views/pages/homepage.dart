@@ -15,24 +15,86 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<String> data = ['Welcome Page'];
-    int initPosition = 1;
+    int initPosition = 1; String dropdownValue = 'One';
+
+  var _selectedtab=0;
   @override
   Widget build(BuildContext context) {
     
     return Scaffold(
-      appBar: AppBar(foregroundColor: Colors.white,backgroundColor:Colors.white,
+      appBar: AppBar(
        
-        title: Row(children: [TextButton(onPressed: () {  setState(() {
-              data.add('Syncable SQL');
-            }); }, child: Text('Synchable SQL'),),Container(width: 10,),TextButton(onPressed: () {  }, child: Text('Menu Item 2'),),Container(width: 10,),TextButton(onPressed: () {  }, child: Text('Menu Item 3'),),Container(width: 10,),TextButton(onPressed: () {  }, child: Text('Menu Item 4'),),Container(width: 10,),TextButton(onPressed: () {  }, child: Text('Menu Item 5'),),Container(width: 10,),TextButton(onPressed: () {  }, child: Text('Menu Item 6'),)],),
+        title: Row(children: [PopupMenuButton(child: Text('Menu item 1'),
+            itemBuilder: (BuildContext bc) => [
+              PopupMenuItem(child: Text("Syncable SQL"),value: 'sqlpage',),
+              PopupMenuItem(
+                  child: Text("Item 2"), ),
+              PopupMenuItem(child: Text("Item 3"), ),
+            ],
+            onSelected: (value) {
+               if(value=='sqlpage')setState(() {
+              if(!data.contains('Syncable SQL')){data.add('Syncable SQL');_selectedtab = 1;}
+            });
+            },
+          ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 2'),
+            itemBuilder: (BuildContext bc) => [
+              PopupMenuItem(child: Text("Item 1")),
+              PopupMenuItem(
+                  child: Text("Item 2"), ),
+              PopupMenuItem(child: Text("Item 3"), ),
+            ],
+            onSelected: (route) {
+              
+            },
+          ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 3'),
+            itemBuilder: (BuildContext bc) => [
+              PopupMenuItem(child: Text("Item 1")),
+              PopupMenuItem(
+                  child: Text("Item 2"), ),
+              PopupMenuItem(child: Text("Item 3"), ),
+            ],
+            onSelected: (route) {
+              
+            },
+          ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 4'),
+            itemBuilder: (BuildContext bc) => [
+              PopupMenuItem(child: Text("Item 1"),),
+              PopupMenuItem(
+                  child: Text("Item 2"),),
+              PopupMenuItem(child: Text("Item 3"),),
+            ],
+            onSelected: (route) {
+              
+            },
+          ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 5'),
+            itemBuilder: (BuildContext bc) => [
+              PopupMenuItem(child: Text("Item 1"),),
+              PopupMenuItem(
+                  child: Text("Item 2"),),
+              PopupMenuItem(child: Text("Item 3"),),
+            ],
+            onSelected: (route) {
+              
+            },
+          ),Container(width: 10,), PopupMenuButton(child: Text('Menu item 6'),
+            itemBuilder: (BuildContext bc) => [
+              PopupMenuItem(child: Text("Item 1"), ),
+              PopupMenuItem(
+                  child: Text("Item 2"), ),
+              PopupMenuItem(child: Text("Item 3"), ),
+            ],
+            onSelected: (route) {
+              
+            },
+          )],),
       ),persistentFooterButtons: <Widget>[
   Icon(Icons.email),
-  Icon(Icons.more_horiz)
+  Icon(Icons.remove)
 ], body: CustomTabView( 
   initPosition: initPosition,
   itemCount: data.length,
   tabBuilder: (context, index) => Tab(text: data[index]),
-  pageBuilder: (context, index) => index==0 ?Center(child: Text(data[index])):SQLPage(),
+  pageBuilder: (context, index) => _selectedtab==0 ?Center(child: Text(data[index])):SQLPage(),
   onPositionChange: (index){
     print('current position: $index');
     initPosition = index;
