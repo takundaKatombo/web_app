@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:web_app/controllers/bottomnotifications.dart';
+import 'package:web_app/utils/GeneralUtils.dart';
 import 'package:web_app/views/pages/sqlpage.dart';
 import 'package:web_app/views/widgets/tabview.dart';
 
@@ -25,19 +26,21 @@ class _MyHomePageState extends State<MyHomePage> {
     var litems = Provider.of<BottomNotifications>(context);
     return Scaffold(
       appBar: AppBar(
-       
-        title: Row(children: [PopupMenuButton(child: Text('Menu item 1'),
-            itemBuilder: (BuildContext bc) => [
-              PopupMenuItem(child: Text("Syncable SQL"),value: 'sqlpage',),
-              PopupMenuItem(child: Text("Item 2"), ),
-              PopupMenuItem(child: Text("Item 3"), ),
-            ],
-            onSelected: (value) {
-               if(value=='sqlpage')setState(() {
-              if(!data.contains('Syncable SQL')){data.add('Syncable SQL');_selectedtab = 1;}
-            });
-            },
-          ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 2'),
+
+        title: Row(children: [Offstage( offstage: isThisAuthorized('theTaskAction'),
+          child: PopupMenuButton(child: Text('Menu item 1'),
+              itemBuilder: (BuildContext bc) => [
+                PopupMenuItem( enabled: ! isThisAuthorized('theTaskAction') ,child: Text("Syncable SQL"),value: 'sqlpage',),
+                PopupMenuItem(child: Text("Item 2"), ),
+                PopupMenuItem(child: Text("Item 3"), ),
+              ],
+              onSelected: (value) {
+                 if(value=='sqlpage')setState(() {
+                if(!data.contains('Syncable SQL')){data.add('Syncable SQL');_selectedtab = 1;}
+              });
+              },
+            ),
+        ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 2'),
             itemBuilder: (BuildContext bc) => [
               PopupMenuItem(child: Text("Item 1")),
               PopupMenuItem(child: Text("Item 2"), ),
