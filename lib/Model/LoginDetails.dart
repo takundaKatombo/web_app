@@ -12,13 +12,14 @@ class LoginDetails {
   String clientIPAddress ;
   String remoteIp ; //= "IpNotSet."
   List<String> roles ;
+  bool connected ;
 
 
 
   LoginDetails({
     this.userID = -1, this.userName , this.firstName, this.lastName,
     this.password = '', this.currentState = '', this.loginStatus = '', this.resultDescription = '',
-    this.defaultRole = '', this.clientIPAddress = '', this.remoteIp = '', this.roles
+    this.defaultRole = '', this.clientIPAddress = '', this.remoteIp = '', this.roles,this.connected = false
   }
       ) ;
 
@@ -36,7 +37,8 @@ class LoginDetails {
         'defaultRole': defaultRole,
         'clientIPAddress': clientIPAddress,
         'remoteIp': remoteIp,
-        'roles': roles
+        'roles': roles,
+        'connected': connected
       };
 
   factory LoginDetails.fromJson(Map<String, dynamic> json) {
@@ -52,7 +54,8 @@ class LoginDetails {
         defaultRole: json['defaultRole'],
         clientIPAddress: json['clientIPAddress'],
         remoteIp: json['remoteIp'],
-        roles: json['roles']
+        roles: json['roles'],
+        connected: json['connected']
     );
   }
 }
