@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   
                       }
                   
-                    ),),ElevatedButton(onPressed:  (){litems.clear();}, child: Text('Clear'))
+                    ),),Spacer(),ElevatedButton(onPressed:  (){litems.clear();}, child: Text('Clear')),Spacer(),
          ],
        ),
      ),
