@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:web_app/controllers/bottomnotifications.dart';
 import 'package:web_app/views/pages/homepage.dart';
 
 void main() {
@@ -14,8 +16,10 @@ class MyApp extends StatelessWidget {
        
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Web App'),
-    );
+      home: ChangeNotifierProvider<BottomNotifications>(
+        create: (_) => BottomNotifications(),
+        child: MyHomePage(title: 'Web App',),
+    ),);
   }
 }
 

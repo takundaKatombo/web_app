@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:web_app/controllers/bottomnotifications.dart';
 
 class SQLPage extends StatefulWidget {
   const SQLPage({
@@ -10,8 +12,11 @@ class SQLPage extends StatefulWidget {
 }
 
 class _SQLPageState extends State<SQLPage> {
+  var val = 1;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    var litems = Provider.of<BottomNotifications>(context);
+
     return Column(children: [Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(child: Text('Please Enter The Sql Below')),
@@ -52,7 +57,7 @@ class _SQLPageState extends State<SQLPage> {
     ),)),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(onPressed: (){setState((){});}, child: Text('Execute')),
+      child: ElevatedButton(onPressed: (){litems.addNotification('Execute pressed $val');val++;}, child: Text('Execute')),
     ),Spacer(),Container()],);
   }
 }
