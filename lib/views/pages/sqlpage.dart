@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SQLPage extends StatelessWidget {
+class SQLPage extends StatefulWidget {
   const SQLPage({
     Key key,
   }) : super(key: key);
 
+  @override
+  _SQLPageState createState() => _SQLPageState();
+}
+
+class _SQLPageState extends State<SQLPage> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [Padding(
@@ -39,7 +44,7 @@ class SQLPage extends StatelessWidget {
       ),],),),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child:Center(child: Container(child:Text('Results Here'),height:MediaQuery.of(context).size.height*0.2,decoration: BoxDecoration(
+      child:Center(child: Container(child:Text('Results Here'),height:MediaQuery.of(context).size.height*0.2,width:MediaQuery.of(context).size.width*0.8,decoration: BoxDecoration(
       border: Border.all(
         color: Colors.blue,
       ),
@@ -47,7 +52,7 @@ class SQLPage extends StatelessWidget {
     ),)),
     ),Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(onPressed: (){}, child: Text('Execute')),
+      child: ElevatedButton(onPressed: (){setState((){});}, child: Text('Execute')),
     ),Spacer(),Container()],);
   }
 }
