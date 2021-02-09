@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:web_app/views/pages/homepage.dart';
+import 'package:web_app/views/pages/login.dart';
 
 
 class RouteGenerator {
@@ -7,9 +8,10 @@ class RouteGenerator {
     
 
     switch (settings.name) {
+      case '/home':
+        return MaterialPageRoute(builder: (context) => MyHomePage());
       case '/':
-        return MaterialPageRoute(builder: (_) => MyHomePage());
-      
+        return MaterialPageRoute(builder: (context) =>Login());
 
       default:
         // If there is no such named route in the switch statement, e.g. /third

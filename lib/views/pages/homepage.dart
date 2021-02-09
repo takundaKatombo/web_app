@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var litems = Provider.of<BottomNotifications>(context);
     return Scaffold(
       appBar: AppBar(
-
+automaticallyImplyLeading: false,
         title: Row(children: [Offstage( offstage: isThisAuthorized('theTaskAction'),
           child: PopupMenuButton(child: Text('Menu item 1'),
               itemBuilder: (BuildContext bc) => [
