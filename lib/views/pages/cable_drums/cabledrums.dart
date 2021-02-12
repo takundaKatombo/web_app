@@ -34,7 +34,7 @@ class _CableDrumsState extends State<CableDrums> {
                 selectedColor: Colors.blue,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.15,
                       child: Text(
@@ -44,7 +44,7 @@ class _CableDrumsState extends State<CableDrums> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.15,
                       child: Text(
@@ -82,7 +82,7 @@ class _CableDrumsState extends State<CableDrums> {
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.4,
                 child: Row(
@@ -90,7 +90,7 @@ class _CableDrumsState extends State<CableDrums> {
                   children: [
                     Text('List Cable Drums'),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: ElevatedButton(
                           onPressed: () {}, child: Text('Refresh')),
                     )
@@ -99,31 +99,31 @@ class _CableDrumsState extends State<CableDrums> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Center(
                   child: Container(
                 child: Row(children: [
                   Column(children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Text('Site Filter Options'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Row(children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: Text('Site Filter'),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: Text('Select Site'),
                         ),
                       ]),
                     )
                   ]),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: new DropdownButton<String>(
                       value: 'Site',
                       items: <String>['A', 'B', 'C', 'D'].map((String value) {
@@ -136,7 +136,7 @@ class _CableDrumsState extends State<CableDrums> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Text('Empty Drums'),
                   ),
                   Container(
@@ -170,7 +170,7 @@ class _CableDrumsState extends State<CableDrums> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Text('Re Fetch'),
@@ -188,14 +188,14 @@ class _CableDrumsState extends State<CableDrums> {
               )),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Container(
                   width: MediaQuery.of(context).size.width * 0.6,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
@@ -209,7 +209,7 @@ class _CableDrumsState extends State<CableDrums> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
@@ -238,16 +238,16 @@ class _CableDrumsState extends State<CableDrums> {
                 height: MediaQuery.of(context).size.height * 0.2,
                 child: Column(children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Text('Search By Drum Number(uses site options)'),
                   ),
                   Row(children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Text('Drum Number'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -260,7 +260,7 @@ class _CableDrumsState extends State<CableDrums> {
                           height: MediaQuery.of(context).size.height * 0.06),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: ElevatedButton(
                         child: Text('Search'),
                         onPressed: onpressed,
@@ -283,24 +283,24 @@ class _CableDrumsState extends State<CableDrums> {
                     Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: Text(
                               'Search Drums By Cable Type(uses site filter)'),
                         ),
                         Row(children: [
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Text('Filter'),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Text(
                               'OFF',
                               style: TextStyle(color: Colors.green),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: ElevatedButton(
                               onPressed: onpressed,
                               child: Text('Close'),
@@ -310,11 +310,11 @@ class _CableDrumsState extends State<CableDrums> {
                         Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Text('Product Name'),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 decoration: BoxDecoration(
                                   border: Border.all(
@@ -329,7 +329,7 @@ class _CableDrumsState extends State<CableDrums> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: ElevatedButton(
                                   child: Text('Search'), onPressed: onpressed),
                             )
@@ -343,12 +343,12 @@ class _CableDrumsState extends State<CableDrums> {
                   height: MediaQuery.of(context).size.height * 0.25,
                 )),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Center(
                   child: Container(
                 child: Text('DataGrid Here'),
                 height: MediaQuery.of(context).size.height * 0.2,
-                width: MediaQuery.of(context).size.width * 0.8,
+                width: MediaQuery.of(context).size.width * 0.4,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.blue,
@@ -360,140 +360,400 @@ class _CableDrumsState extends State<CableDrums> {
           ],
         );
       case 'update':
-        return ListView(children: [
-          Row(children: [
-            Column(children: [
-              Row(children: [
-                Text('Drum Number'),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blue,
-                    ),
-                    // borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: TextField(),
-                )
-              ]),
-              Row(children: [
-                Text('Product on Drum'),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blue,
-                    ),
-                    // borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: TextField(),
-                )
-              ]),
-              Row(
-                children: [
-                  Text('Supplier Drum No'),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue,
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text('Update a cable drum'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.05,
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        child: Text('Supplier cable drum no.'),
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.2,
                       ),
-                      // borderRadius: BorderRadius.circular(10.0),
                     ),
-                    child: TextField(),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.blue,
+                          ),
+                          // borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Container(
+                          child: TextField(),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.1,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Icon(Icons.close),
+                    )
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(color: Colors.blue),
+                    bottom: BorderSide(
+                      color: Colors.blue,
+                    ),
+                  ),
+                  // borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
-              Row(children: [
-                Text('Manu Batch No'),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blue,
-                    ),
-                    // borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: TextField(),
-                )
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Drum Number'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Product on Drum'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Supplier Drum no.'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Manu Batch no.'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Drum Type'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Drum Empty'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Quantity in stock'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
               ]),
-              Row(children: [
-                Text('Drum Type'),
-                /*drop down menu*/ Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blue,
-                    ),
-                    // borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: TextField(),
-                )
-              ]),
-              Row(children: [
-                Text('Drum Empty'),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blue,
-                    ),
-                    // borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: TextField(),
-                )
-              ]),
-            ])
-          ])
-        ]);
+              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Electric Speed'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Meters measured  (Actual)'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Meters Received'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Supplier'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Recieved Date'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Delivery Note no.'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text('Comments'),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(),
+                        )
+                      ]),
+                ),
+              ])
+            ]),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: onPressed, child: Text('Submit')),
+                Container(width: 20),
+                ElevatedButton(onPressed: onPressed, child: Text('Clear'))
+              ],
+            )
+          ],
+        );
 
-        //         Column(children: [Text('Update A Cable Drum'),Row(mainAxisAlignment: MainAxisAlignment.center,
-        //             children: [
-        //               Padding(
-        //                 padding: const EdgeInsets.all(8.0),
-        //                 child: Text('Search Cable Drum Number'),
-        //               ),Container(decoration: BoxDecoration(
-        //       border: Border.all(
-        //           color: Colors.blue,
-        //       ),
-        //       // borderRadius: BorderRadius.circular(10.0),
-        //     ),
-        //                 child: Padding(
-        //                   padding: const EdgeInsets.all(8.0),
-        //                   child: Container(decoration: BoxDecoration(
-        //   border: Border.all(
-        //     color: Colors.blue,
-        //   ),
-        //   // borderRadius: BorderRadius.circular(10.0),
-        // ),width:MediaQuery.of(context).size.width*0.1,height:MediaQuery.of(context).size.height*0.1,child: TextField()),
-        //                 ),
-        //               ),
-        //             ],
-        //           ),Row(children:[Column(children: [Row(children:[Text('Drum Number'),Container(decoration: BoxDecoration(
-        //       border: Border.all(
-        //             color: Colors.blue,
-        //       ),
-        //       // borderRadius: BorderRadius.circular(10.0),
-        //     ),child: TextField(),)]),Row(children:[Text('Product on Drum'),Container(decoration: BoxDecoration(
-        //       border: Border.all(
-        //             color: Colors.blue,
-        //       ),
-        //       // borderRadius: BorderRadius.circular(10.0),
-        //     ),child: TextField(),)]),Row(children:[Text('Supplier Drum No'),Container(decoration: BoxDecoration(
-        //       border: Border.all(
-        //             color: Colors.blue,
-        //       ),
-        //       // borderRadius: BorderRadius.circular(10.0),
-        //     ),child: TextField(),)],),Row(children:[Text('Manu Batch No'),Container(decoration: BoxDecoration(
-        //       border: Border.all(
-        //             color: Colors.blue,
-        //       ),
-        //       // borderRadius: BorderRadius.circular(10.0),
-        //     ),child: TextField(),)]),Row(children:[Text('Drum Type'),/*drop down menu*/Container(decoration: BoxDecoration(
-        //       border: Border.all(
-        //             color: Colors.blue,
-        //       ),
-        //       // borderRadius: BorderRadius.circular(10.0),
-        //     ),child: TextField(),)]),Row(children:[Text('Drum Empty'),Container(decoration: BoxDecoration(
-        //       border: Border.all(
-        //             color: Colors.blue,
-        //       ),
-        //       // borderRadius: BorderRadius.circular(10.0),
-        //     ),child: TextField(),)]),],mainAxisAlignment: MainAxisAlignment.center,)]),],mainAxisAlignment: MainAxisAlignment.center,);
         break;
       default:
         return Container();
@@ -507,4 +767,6 @@ class _CableDrumsState extends State<CableDrums> {
   }
 
   void onpressed() {}
+
+  void onPressed() {}
 }
