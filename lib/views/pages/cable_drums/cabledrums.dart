@@ -23,50 +23,53 @@ class _CableDrumsState extends State<CableDrums> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-            height: MediaQuery.of(context).size.height * 0.1,
-            width: MediaQuery.of(context).size.width * 0.3,
-            child: Center(
-              child: ToggleButtons(
-                borderColor: Colors.blue,
-                hoverColor: Colors.lightBlue,
-                selectedBorderColor: Colors.blue,
-                selectedColor: Colors.blue,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      child: Text(
-                        'List',
-                        style: TextStyle(fontSize: 16),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+              height: MediaQuery.of(context).size.height * 0.06,
+              width: MediaQuery.of(context).size.width * 0.3,
+              child: Center(
+                child: ToggleButtons(
+                  borderColor: Colors.blue,
+                  hoverColor: Colors.lightBlue,
+                  selectedBorderColor: Colors.blue,
+                  selectedColor: Colors.blue,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        child: Text(
+                          'List',
+                          style: TextStyle(fontSize: 16),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      child: Text(
-                        'Update',
-                        style: TextStyle(fontSize: 16),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        child: Text(
+                          'Update',
+                          style: TextStyle(fontSize: 16),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-                onPressed: (int index) {
-                  setState(() {
-                    if (index == 0 && screen != 'list')
-                      setScreen('list');
-                    else if (index == 1 && screen != 'update')
-                      setScreen('update');
-                    else if ((index == 0 && screen == 'list') ||
-                        (index == 1 && screen == 'update')) setScreen('none');
-                  });
-                },
-                isSelected: isSelected,
-              ),
-            )),
+                  ],
+                  onPressed: (int index) {
+                    setState(() {
+                      if (index == 0 && screen != 'list')
+                        setScreen('list');
+                      else if (index == 1 && screen != 'update')
+                        setScreen('update');
+                      else if ((index == 0 && screen == 'list') ||
+                          (index == 1 && screen == 'update')) setScreen('none');
+                    });
+                  },
+                  isSelected: isSelected,
+                ),
+              )),
+        ),
         Container(
           child: chooseScreen(screen),
         ),
@@ -98,32 +101,32 @@ class _CableDrumsState extends State<CableDrums> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Center(
-                  child: Container(
-                child: Row(children: [
-                  Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text('Site Filter Options'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Row(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('Site Filter'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('Select Site'),
-                        ),
-                      ]),
-                    )
-                  ]),
+            Center(
+                child: Container(
+              child: Row(children: [
+                Column(children: [
                   Padding(
                     padding: const EdgeInsets.all(4.0),
+                    child: Text('Site Filter Options'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Row(children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text('Site Filter'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text('Select Site'),
+                      ),
+                    ]),
+                  )
+                ]),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.05,
                     child: new DropdownButton<String>(
                       value: 'Site',
                       items: <String>['A', 'B', 'C', 'D'].map((String value) {
@@ -135,62 +138,62 @@ class _CableDrumsState extends State<CableDrums> {
                       onChanged: (_) {},
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text('Empty Drums'),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.15,
-                    child: ListTile(
-                      title: const Text('Yes'),
-                      leading: Radio(
-                        value: Refetch.yes,
-                        groupValue: _character,
-                        onChanged: (Refetch value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.15,
-                    child: ListTile(
-                      title: const Text('No'),
-                      leading: Radio(
-                        value: Refetch.no,
-                        groupValue: _character,
-                        onChanged: (Refetch value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Re Fetch'),
-                    ),
-                  ),
-                ]),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.blue,
-                  ),
-                  // borderRadius: BorderRadius.circular(10.0),
                 ),
-                width: MediaQuery.of(context).size.width * 0.7,
-                height: MediaQuery.of(context).size.height * 0.13,
-              )),
-            ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text('Empty Drums'),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  child: ListTile(
+                    title: const Text('Yes'),
+                    leading: Radio(
+                      value: Refetch.yes,
+                      groupValue: _character,
+                      onChanged: (Refetch value) {
+                        setState(() {
+                          _character = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  child: ListTile(
+                    title: const Text('No'),
+                    leading: Radio(
+                      value: Refetch.no,
+                      groupValue: _character,
+                      onChanged: (Refetch value) {
+                        setState(() {
+                          _character = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Re Fetch'),
+                  ),
+                ),
+              ]),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue,
+                ),
+                // borderRadius: BorderRadius.circular(10.0),
+              ),
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height * 0.1,
+            )),
             Padding(
               padding: const EdgeInsets.all(4.0),
               child: Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
+                  width: MediaQuery.of(context).size.width * 0.7,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -234,7 +237,7 @@ class _CableDrumsState extends State<CableDrums> {
                   ),
                   // borderRadius: BorderRadius.circular(10.0),
                 ),
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: MediaQuery.of(context).size.width * 0.7,
                 height: MediaQuery.of(context).size.height * 0.2,
                 child: Column(children: [
                   Padding(
@@ -342,21 +345,6 @@ class _CableDrumsState extends State<CableDrums> {
                   width: MediaQuery.of(context).size.width * 0.6,
                   height: MediaQuery.of(context).size.height * 0.25,
                 )),
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Center(
-                  child: Container(
-                child: Text('DataGrid Here'),
-                height: MediaQuery.of(context).size.height * 0.2,
-                width: MediaQuery.of(context).size.width * 0.4,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.blue,
-                  ),
-                  // borderRadius: BorderRadius.circular(10.0),
-                ),
-              )),
-            ),
           ],
         );
       case 'update':
