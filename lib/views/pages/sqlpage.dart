@@ -15,7 +15,8 @@ class _SQLPageState extends State<SQLPage> {
   var val = 1;
 
   @override
-  Widget build(BuildContext context) {    var litems = Provider.of<BottomNotifications>(context);
+  Widget build(BuildContext context) {   
+   var litems = Provider.of<BottomNotifications>(context);
 
     return Column(children: [Padding(
       padding: const EdgeInsets.all(8.0),

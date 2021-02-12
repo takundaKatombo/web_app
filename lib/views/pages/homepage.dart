@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:web_app/controllers/bottomnotifications.dart';
 import 'package:web_app/utils/GeneralUtils.dart';
+import 'package:web_app/views/pages/cable_drums/cabledrums.dart';
 import 'package:web_app/views/pages/sqlpage.dart';
 import 'package:web_app/views/widgets/tabview.dart';
 
@@ -19,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<String> data = ['Welcome Page'];
-    int initPosition = 1; String dropdownValue = 'One';
+    int initPosition = 0 ; String dropdownValue = 'One';
   var _selectedtab=0;
   
   @override
@@ -29,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
 automaticallyImplyLeading: false,
         title: Row(children: [Offstage( offstage: isThisAuthorized('theTaskAction'),
-          child: PopupMenuButton(child: Text('Menu item 1'),
+          child: PopupMenuButton(child: Text('Projects'),
               itemBuilder: (BuildContext bc) => [
                 PopupMenuItem( enabled: ! isThisAuthorized('theTaskAction') ,child: Text("Syncable SQL"),value: 'sqlpage',),
                 PopupMenuItem(child: Text("Item 2"), ),
@@ -41,7 +42,7 @@ automaticallyImplyLeading: false,
               });
               },
             ),
-        ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 2'),
+        ),Container(width: 10,),PopupMenuButton(child: Text('Staff'),
             itemBuilder: (BuildContext bc) => [
               PopupMenuItem(child: Text("Item 1")),
               PopupMenuItem(child: Text("Item 2"), ),
@@ -50,7 +51,7 @@ automaticallyImplyLeading: false,
             onSelected: (route) {
               
             },
-          ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 3'),
+          ),Container(width: 10,),PopupMenuButton(child: Text('Stock Control'),
             itemBuilder: (BuildContext bc) => [
               PopupMenuItem(child: Text("Item 1")),
               PopupMenuItem(child: Text("Item 2"), ),
@@ -59,7 +60,27 @@ automaticallyImplyLeading: false,
             onSelected: (route) {
               
             },
-          ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 4'),
+          ),Container(width: 10,),PopupMenuButton(child: Text('Cable Drums'),
+            itemBuilder: (BuildContext bc) => [
+                PopupMenuItem( enabled: ! isThisAuthorized('theTaskAction') ,child: Text("Cable Drums"),value: 'cabledrums',),
+              PopupMenuItem(child: Text("Item 2"), ),
+              PopupMenuItem(child: Text("Item 3"), ),
+            ],
+           onSelected: (value) {
+                 if(value=='cabledrums')setState(() {
+                if(!data.contains('Cable Drums')){data.add('Cable Drums');_selectedtab = 1;}
+              });
+              },
+          ),Container(width: 10,),PopupMenuButton(child: Text('Cable Process'),
+            itemBuilder: (BuildContext bc) => [
+              PopupMenuItem(child: Text("Item 1")),
+              PopupMenuItem(child: Text("Item 2"), ),
+              PopupMenuItem(child: Text("Item 3"), ),
+            ],
+            onSelected: (route) {
+              
+            },
+          ),Container(width: 10,),PopupMenuButton(child: Text('Site Administration'),
             itemBuilder: (BuildContext bc) => [
               PopupMenuItem(child: Text("Item 1"),),
               PopupMenuItem(child: Text("Item 2"),),
@@ -68,7 +89,7 @@ automaticallyImplyLeading: false,
             onSelected: (route) {
               
             },
-          ),Container(width: 10,),PopupMenuButton(child: Text('Menu item 5'),
+          ),Container(width: 10,),PopupMenuButton(child: Text('CMS Administration'),
             itemBuilder: (BuildContext bc) => [
               PopupMenuItem(child: Text("Item 1"),),
               PopupMenuItem(child: Text("Item 2"),),
@@ -77,7 +98,7 @@ automaticallyImplyLeading: false,
             onSelected: (route) {
               
             },
-          ),Container(width: 10,), PopupMenuButton(child: Text('Menu item 6'),
+          ),Container(width: 10,), PopupMenuButton(child: Text('Help'),
             itemBuilder: (BuildContext bc) => [
               PopupMenuItem(child: Text("Item 1"), ),
               PopupMenuItem(child: Text("Item 2"), ),
@@ -94,43 +115,29 @@ automaticallyImplyLeading: false,
 // ],
 
  body:
-     CustomTabView( 
-      initPosition: initPosition,
-      itemCount: data.length,
-      tabBuilder: (context, index) => Tab(child: GestureDetector(child: Text( data[index]),onDoubleTap: (){setState(() {
-        data.remove( data[index]);index==1?_selectedtab=1:_selectedtab=0;
-      });},)),
-      pageBuilder: (context, index) => _selectedtab==0 ?Container():SQLPage(),
-      onPositionChange: (index){
-       setState(() {
-         index==0?_selectedtab=0:_selectedtab=1;
-       });
-        initPosition = index;
-      },
-      onScroll: (position) => print('$position'),
+     Container(decoration: BoxDecoration(
+      border: Border.all(
+        color: Colors.blue,
+      ),
+      // borderRadius: BorderRadius.circular(10.0),
+    ),
+       child: CustomTabView( 
+        initPosition: initPosition,
+        itemCount: data.length,
+        tabBuilder: (context, index) => Tab(child: GestureDetector(child: Text( data[index]),onDoubleTap: (){setState(() {
+          data.remove( data[index]);
+        });},)),
+        pageBuilder: (context, index) => selectPage(data[index]),//function call to select tab depending on index 
+        onPositionChange: (index){
+         setState(() {
+           index==0?_selectedtab=0:_selectedtab=1;
+         });
+          initPosition = index;
+        },
+        onScroll: (position) => print('$position'),
  ),
+     ),
 
-    
-  // footer: new Footer(
-  //         child: Padding(
-  //           padding: new EdgeInsets.all(10.0),
-  //           child:Container( color:Colors.black,child: new ListView.builder
-            
-  //             (
-            
-  //               itemCount: litems.length,
-            
-  //               itemBuilder: (BuildContext ctxt, int index) {
-            
-  //                return new Text(litems[index]);
-            
-  //               }
-            
-  //             ),),
-  //         ),
-  //       ),
-       // flex: 1, //default flex is 2
-     // ),
      bottomNavigationBar: Container(decoration: BoxDecoration(
       border: Border.all(
         color: Colors.blue,
@@ -162,6 +169,18 @@ automaticallyImplyLeading: false,
      ),
           
     );
+  }
+
+  Widget selectPage(String pageName)
+  {
+    switch (pageName) {
+      case 'Cable Drums':return CableDrums();break;
+
+      case 'Syncable SQL':return SQLPage();
+        
+        break;
+      default:return Container();
+    }
   }
 }
 
