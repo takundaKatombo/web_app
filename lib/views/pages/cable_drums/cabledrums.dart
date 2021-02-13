@@ -17,171 +17,228 @@ class _CableDrumsState extends State<CableDrums> {
   Refetch _character = Refetch.no;
 
   var searchBy;
+  var value = false;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-              height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: Center(
-                child: ToggleButtons(
-                  borderColor: Colors.blue,
-                  hoverColor: Colors.lightBlue,
-                  selectedBorderColor: Colors.blue,
-                  selectedColor: Colors.blue,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: Text(
-                          'List',
-                          style: TextStyle(fontSize: 16),
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: Center(
+                    child: ToggleButtons(
+                      borderColor: Colors.blue,
+                      hoverColor: Colors.lightBlue,
+                      selectedBorderColor: Colors.blue,
+                      selectedColor: Colors.blue,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            child: Text(
+                              'List',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: Text(
-                          'Update',
-                          style: TextStyle(fontSize: 16),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            child: Text(
+                              'Update',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
+                      onPressed: (int index) {
+                        setState(() {
+                          if (index == 0 && screen != 'list')
+                            setScreen('list');
+                          else if (index == 1 && screen != 'update')
+                            setScreen('update');
+                          else if ((index == 0 && screen == 'list') ||
+                              (index == 1 && screen == 'update'))
+                            setScreen('none');
+                        });
+                      },
+                      isSelected: isSelected,
                     ),
-                  ],
-                  onPressed: (int index) {
-                    setState(() {
-                      if (index == 0 && screen != 'list')
-                        setScreen('list');
-                      else if (index == 1 && screen != 'update')
-                        setScreen('update');
-                      else if ((index == 0 && screen == 'list') ||
-                          (index == 1 && screen == 'update')) setScreen('none');
-                    });
-                  },
-                  isSelected: isSelected,
-                ),
-              )),
+                  )),
+            ),
+            Container(
+              // height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: chooseScreen(screen),
+            ),
+          ],
         ),
-        Container(
-          child: chooseScreen(screen),
-        ),
-        Spacer(),
-        Container()
-      ],
+      ),
     );
   }
 
   Widget chooseScreen(String screen) {
     switch (screen) {
       case 'list':
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(4.0),
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('List Cable Drums'),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ElevatedButton(
+                          onPressed: () {}, child: Text('Refresh')),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.4,
+              child: Row(children: [
+                Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text('Site Filter Options'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Row(children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text('Site Filter'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text('Select Site'),
+                      ),
+                    ]),
+                  )
+                ]),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.05,
+                    child: new DropdownButton<String>(
+                      value: 'A',
+                      items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                        return new DropdownMenuItem<String>(
+                          value: value,
+                          child: new Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (_) {},
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text('Empty Drums'),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  child: ListTile(
+                    title: const Text('Yes'),
+                    leading: Radio(
+                      value: Refetch.yes,
+                      groupValue: _character,
+                      onChanged: (Refetch value) {
+                        setState(() {
+                          _character = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  child: ListTile(
+                    title: const Text('No'),
+                    leading: Radio(
+                      value: Refetch.no,
+                      groupValue: _character,
+                      onChanged: (Refetch value) {
+                        setState(() {
+                          _character = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Re Fetch'),
+                  ),
+                ),
+              ]),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue,
+                ),
+                // borderRadius: BorderRadius.circular(10.0),
+              ),
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height * 0.1,
+            )),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('List Cable Drums'),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: ElevatedButton(
-                            onPressed: () {}, child: Text('Refresh')),
+                          onPressed: () {
+                            setState(() {
+                              if (searchBy != 'cable')
+                                searchBy = 'cable';
+                              else
+                                searchBy = null;
+                            });
+                          },
+                          child: Text('Toggle Search By Cable Type'),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              if (searchBy != 'drum')
+                                searchBy = 'drum';
+                              else
+                                searchBy = null;
+                            });
+                          },
+                          child: Text('Toggle Search By Drum Number'),
+                        ),
                       )
                     ],
-                  ),
-                ),
-              ),
-              Center(
-                  child: Container(
-                child: Row(children: [
-                  Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text('Site Filter Options'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Row(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('Site Filter'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('Select Site'),
-                        ),
-                      ]),
-                    )
-                  ]),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.05,
-                      child: new DropdownButton<String>(
-                        value: 'A',
-                        items: <String>['A', 'B', 'C', 'D'].map((String value) {
-                          return new DropdownMenuItem<String>(
-                            value: value,
-                            child: new Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (_) {},
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text('Empty Drums'),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.15,
-                    child: ListTile(
-                      title: const Text('Yes'),
-                      leading: Radio(
-                        value: Refetch.yes,
-                        groupValue: _character,
-                        onChanged: (Refetch value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.15,
-                    child: ListTile(
-                      title: const Text('No'),
-                      leading: Radio(
-                        value: Refetch.no,
-                        groupValue: _character,
-                        onChanged: (Refetch value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Re Fetch'),
-                    ),
-                  ),
-                ]),
+                  )),
+            ),
+            Visibility(
+              visible: searchBy == 'drum',
+              child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.blue,
@@ -189,48 +246,43 @@ class _CableDrumsState extends State<CableDrums> {
                   // borderRadius: BorderRadius.circular(10.0),
                 ),
                 width: MediaQuery.of(context).size.width * 0.7,
-                height: MediaQuery.of(context).size.height * 0.1,
-              )),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Container(
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                if (searchBy != 'cable')
-                                  searchBy = 'cable';
-                                else
-                                  searchBy = null;
-                              });
-                            },
-                            child: Text('Toggle Search By Cable Type'),
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text('Search By Drum Number(uses site options)'),
+                  ),
+                  Row(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text('Drum Number'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                            ),
+                            // borderRadius: BorderRadius.circular(10.0),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                if (searchBy != 'drum')
-                                  searchBy = 'drum';
-                                else
-                                  searchBy = null;
-                              });
-                            },
-                            child: Text('Toggle Search By Drum Number'),
-                          ),
-                        )
-                      ],
-                    )),
+                          child: TextField(),
+                          width: MediaQuery.of(context).size.width * 0.1,
+                          height: MediaQuery.of(context).size.height * 0.06),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ElevatedButton(
+                        child: Text('Search'),
+                        onPressed: onpressed,
+                      ),
+                    )
+                  ])
+                ]),
               ),
-              Visibility(
-                visible: searchBy == 'drum',
+            ),
+            Visibility(
+                visible: searchBy == 'cable',
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -238,118 +290,323 @@ class _CableDrumsState extends State<CableDrums> {
                     ),
                     // borderRadius: BorderRadius.circular(10.0),
                   ),
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  child: Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text('Search By Drum Number(uses site options)'),
-                    ),
-                    Row(children: [
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text('Drum Number'),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.blue,
-                              ),
-                              // borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: TextField(),
-                            width: MediaQuery.of(context).size.width * 0.1,
-                            height: MediaQuery.of(context).size.height * 0.06),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: ElevatedButton(
-                          child: Text('Search'),
-                          onPressed: onpressed,
+                  child: Row(children: [
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                              'Search Drums By Cable Type(uses site filter)'),
                         ),
-                      )
-                    ])
-                  ]),
-                ),
-              ),
-              Visibility(
-                  visible: searchBy == 'cable',
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue,
-                      ),
-                      // borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Row(children: [
-                      Column(
-                        children: [
+                        Row(children: [
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text('Filter'),
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Text(
-                                'Search Drums By Cable Type(uses site filter)'),
+                              'OFF',
+                              style: TextStyle(color: Colors.green),
+                            ),
                           ),
-                          Row(children: [
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: ElevatedButton(
+                              onPressed: onpressed,
+                              child: Text('Close'),
+                            ),
+                          )
+                        ]),
+                        Row(
+                          children: [
                             Padding(
                               padding: const EdgeInsets.all(4.0),
-                              child: Text('Filter'),
+                              child: Text('Product Name'),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                'OFF',
-                                style: TextStyle(color: Colors.green),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                  ),
+                                  // borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                width: MediaQuery.of(context).size.width * 0.1,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
+                                child: TextField(),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: ElevatedButton(
-                                onPressed: onpressed,
-                                child: Text('Close'),
-                              ),
+                                  child: Text('Search'), onPressed: onpressed),
                             )
-                          ]),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Text('Product Name'),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.1,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.07,
-                                  child: TextField(),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: ElevatedButton(
-                                    child: Text('Search'),
-                                    onPressed: onpressed),
-                              )
-                            ],
-                          )
+                          ],
+                        )
+                      ],
+                    ),
+                    Column(),
+                  ]),
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                )),
+            Column(
+              children: [
+                Container(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    height: MediaQuery.of(context).size.height,
+                    child: SingleChildScrollView(
+                      child: DataTable(
+                        showCheckboxColumn: false,
+                        columns: [
+                          DataColumn(label: Text('Site')),
+                          DataColumn(label: Text('Product')),
+                          DataColumn(label: Text('Cable Code')),
+                          DataColumn(label: Text('E')),
+                          DataColumn(label: Text('Drum Number'))
+                        ],
+                        rows: [
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 ')),
+                              ]),
+                          DataRow(
+                              onSelectChanged: (selected) {
+                                setState(() {
+                                  setScreen('update');
+                                });
+                              },
+                              cells: [
+                                DataCell(Text('Kusite')),
+                                DataCell(Text('HVVT56Y(500mm)')),
+                                DataCell(Text('HVVT56Y')),
+                                DataCell(Text('E')),
+                                DataCell(Text('00654 last item ')),
+                              ]),
                         ],
                       ),
-                      Column(),
-                    ]),
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    height: MediaQuery.of(context).size.height * 0.25,
-                  )),
-            ],
-          ),
+                    )),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.blue,
+                    ),
+                    // borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Search'),
+                      Container(
+                        width: 15,
+                      ),
+                      Container(
+                        child: TextField(),
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Container(
+                        width: 15,
+                      ),
+                      ElevatedButton(onPressed: null, child: Text('Label')),
+                      Container(
+                        width: 15,
+                      ),
+                      ElevatedButton(
+                          onPressed: onPressed, child: Text('Fields')),
+                      Container(
+                        width: 15,
+                      ),
+                      ElevatedButton(
+                          onPressed: onPressed, child: Text('Update')),
+                      Container(
+                        width: 15,
+                      ),
+                      ElevatedButton(
+                          onPressed: onPressed, child: Text('CSV Export')),
+                      Container(
+                        width: 15,
+                      ),
+                      ElevatedButton(
+                          onPressed: onPressed, child: Text('PDF Export')),
+                      Container(
+                        width: 15,
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        child: CheckboxListTile(
+                          value: value,
+                          onChanged: onChanged,
+                          title: Text('Non-active'),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            Container(
+              height: 15,
+            )
+          ],
         );
       case 'update':
         return Column(
