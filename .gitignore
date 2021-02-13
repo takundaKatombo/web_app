@@ -44,3 +44,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+a-temp-location/ZxcvbnData/1/us_tv_and_film.txt
+*.txt
