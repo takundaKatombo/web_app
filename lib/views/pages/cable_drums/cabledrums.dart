@@ -1,8 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:web_app/controllers/page_controllers/cabledrums.dart';
 
 class CableDrums extends StatefulWidget {
   @override
