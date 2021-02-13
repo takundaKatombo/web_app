@@ -5,7 +5,7 @@ bool isThisAuthorized(String methodToCall)
   return false ; // Show component ie do NOT move OffStage
 
   /*
-  if (ConfigData().adminUser) return true ;
+  if (ConfigData().adminUser) return false ;
   if (ConfigData().RBAMap.containsKey(methodToCall))
   {
     // var dict:Array = config.authorizationDict[methodToCall] as Array;

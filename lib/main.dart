@@ -16,8 +16,7 @@ class MyApp extends StatelessWidget {
         child:MaterialApp(
       title: 'Web App',
       theme: ThemeData(
-       
-        primarySwatch: Colors.blue,
+         primarySwatch: Colors.blue,
       ),initialRoute: '/',
           onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings),
     ),);
