@@ -88,7 +88,7 @@ class SQLPage extends StatelessWidget {
           child: RaisedButton(
               elevation: 4.0,
               splashColor: Colors.yellow,
-              onPressed: executeJob,
+              onPressed: () => executeJob(),
               child: Text('Execute')),
         )
       ],
@@ -96,7 +96,7 @@ class SQLPage extends StatelessWidget {
   }
 }
 
-Future<String> executeJob() async {
+void executeJob() {
   List<dynamic> entityElements = [sqlUpdateText];
 //  List resultElements = await getElementsFromServer(isPost: true, entityElements: entityElements, endPoint: ConfigData().siteControlURL, methodToCall: Constants.METHOD_GENERIC_SYNC_SQL);
 
@@ -108,7 +108,6 @@ Future<String> executeJob() async {
       locator<BottomNotifications>().addNotification('Execute pressed ');
     }
     //
-
   }
 
 //  print(sqlUpdateText);
