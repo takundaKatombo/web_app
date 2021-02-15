@@ -4,5 +4,5 @@ import 'package:web_app/controllers/bottomnotifications.dart';
 GetIt locator = GetIt.instance;
 
 void setupLocator() {
-  locator.registerSingleton(() => BottomNotifications());
+  locator.registerSingleton(BottomNotifications());
 }

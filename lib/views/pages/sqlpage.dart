@@ -103,12 +103,14 @@ void executeJob() {
   List<dynamic> resultElements = ['testValue'];
 
   if (resultElements != null) {
+    print('in execute if true');
     for (int i = 0; i < resultElements.length; i++) {
       //Todo Populate some field if required
+      print('in execute in for');
       locator<BottomNotifications>().addNotification('Execute pressed ');
     }
     //
   }
 
-//  print(sqlUpdateText);
+  print('in execute job');
 }
