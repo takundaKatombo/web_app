@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:web_app/controllers/bottomnotifications.dart';
+import 'package:web_app/model/ConfigData.dart';
 import 'package:web_app/services/locator.dart';
+import 'package:web_app/utils/Constants.dart';
+import 'package:web_app/utils/Transmission.dart';
 
 // Page vars
 String sqlUpdateText;
@@ -94,21 +97,19 @@ class SQLPage extends StatelessWidget {
   }
 }
 
-void executeJob() {
+void executeJob() async {
   List<dynamic> entityElements = [sqlUpdateText];
-//  List resultElements = await getElementsFromServer(isPost: true, entityElements: entityElements, endPoint: ConfigData().siteControlURL, methodToCall: Constants.METHOD_GENERIC_SYNC_SQL);
+  List resultElements = await getElementsFromServer(isPost: true, entityElements: entityElements, endPoint: ConfigData().siteControlURL, methodToCall: Constants.METHOD_GENERIC_SYNC_SQL);
 
-  List<dynamic> resultElements = ['testValue'];
-
+//update cms.staff_lu set id_number=306 where first_name = 'Dave'
   if (resultElements != null) {
-    print('in execute if true');
+  /*
     for (int i = 0; i < resultElements.length; i++) {
-      //Todo Populate some field if required
-      print('in execute in for');
-      locator<BottomNotifications>().addNotification('Execute pressed ');
+      locator<BottomNotifications>().addNotification('SQLUpdate Successful');
     }
-    //
+    */
+    if (resultElements.length > 0) locator<BottomNotifications>().addNotification('SQLUpdate Successful',true);
+
   }
 
-  print('in execute job');
 }
