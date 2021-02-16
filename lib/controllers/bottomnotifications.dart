@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class BottomNotifications with ChangeNotifier {
+class BottomNotifications extends ChangeNotifier {
   List<String> litems = [];
 
   void addNotification(String text) {
     litems.add(text);
-    print('in add notification');
+   // print('in add notification');
     notifyListeners();
   }
 

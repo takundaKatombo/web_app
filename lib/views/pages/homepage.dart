@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:web_app/controllers/bottomnotifications.dart';
 import 'package:web_app/utils/GeneralUtils.dart';
+import 'package:web_app/views/pages/admin/sqlpage.dart';
 import 'package:web_app/views/pages/cable_drums/cabledrums.dart';
 import 'package:web_app/views/pages/initiate_process/initiate_process.dart';
-import 'file:///E:/Data/Projects/Flutter/web_app/lib/views/pages/admin/sqlpage.dart';
 import 'package:web_app/views/widgets/tabview.dart';
 
 class MyHomePage extends StatefulWidget {
