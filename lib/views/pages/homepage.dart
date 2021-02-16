@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:web_app/controllers/bottomnotifications.dart';
 import 'package:web_app/utils/GeneralUtils.dart';
 import 'package:web_app/views/pages/cable_drums/cabledrums.dart';
+import 'package:web_app/views/pages/initiate_process/initiate_process.dart';
 import 'package:web_app/views/pages/sqlpage.dart';
 import 'package:web_app/views/widgets/tabview.dart';
 
@@ -52,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (!data.contains('Syncable SQL')) {
                         data.add('Syncable SQL');
                         _selectedtab = 1;
+                        initPosition = data.length - 1;
                       }
                     });
                 },
@@ -113,6 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (!data.contains('Cable Drums')) {
                       data.add('Cable Drums');
                       _selectedtab = 1;
+                      initPosition = data.length - 1;
+
+                      // DefaultTabController.of(context)
+                      //     .animateTo(data.length - 1);
                     }
                   });
               },
@@ -123,7 +129,10 @@ class _MyHomePageState extends State<MyHomePage> {
             PopupMenuButton(
               child: Text('Cable Process'),
               itemBuilder: (BuildContext bc) => [
-                PopupMenuItem(child: Text("Item 1")),
+                PopupMenuItem(
+                  child: Text("Initiate Process"),
+                  value: 'initiateProcess',
+                ),
                 PopupMenuItem(
                   child: Text("Item 2"),
                 ),
@@ -131,7 +140,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text("Item 3"),
                 ),
               ],
-              onSelected: (route) {},
+              onSelected: (value) {
+                if (value == 'initiateProcess')
+                  setState(() {
+                    if (!data.contains('Initiate Process')) {
+                      data.add('Initiate Process');
+                      _selectedtab = 1;
+                      initPosition = data.length - 1;
+                      // DefaultTabController.of(context)
+                      //     .animateTo(data.length - 1);
+                    }
+                  });
+              },
             ),
             Container(
               width: 10,
@@ -196,12 +216,12 @@ class _MyHomePageState extends State<MyHomePage> {
 // ],
 
       body: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.blue,
-          ),
-          // borderRadius: BorderRadius.circular(10.0),
-        ),
+        // decoration: BoxDecoration(
+        //   border: Border.all(
+        //     color: Colors.blue,
+        //   ),
+        //   // borderRadius: BorderRadius.circular(10.0),
+        // ),
         child: CustomTabView(
           initPosition: initPosition,
           itemCount: data.length,
@@ -217,22 +237,13 @@ class _MyHomePageState extends State<MyHomePage> {
           pageBuilder: (context, index) => selectPage(
               data[index]), //function call to select tab depending on index
           onPositionChange: (index) {
-            setState(() {
-              index == 0 ? _selectedtab = 0 : _selectedtab = 1;
-            });
             initPosition = index;
           },
-          onScroll: (position) => print('$position'),
         ),
       ),
 
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.blue,
-          ),
-          // borderRadius: BorderRadius.circular(10.0),
-        ),
+      bottomNavigationBar: Card(
+        elevation: 5,
         child: Row(
           children: [
             Container(
@@ -247,7 +258,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: new ListView.builder(
                   itemCount: litems.litems.length,
                   itemBuilder: (BuildContext ctxt, int index) {
-                    return new Text(litems.litems[index]);
+                    return ListTile(title: new Text(litems.litems[index]));
                   }),
             ),
             Spacer(),
@@ -271,8 +282,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
       case 'Syncable SQL':
         return SQLPage();
-
         break;
+
+      case 'Initiate Process':
+        return InitiateProcess();
+        break;
+
       default:
         return Container();
     }
