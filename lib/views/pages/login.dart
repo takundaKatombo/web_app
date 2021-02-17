@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:web_app/controllers/bottomnotifications.dart';
+import 'package:web_app/services/locator.dart';
+import 'package:web_app/views/pages/future.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -6,6 +9,14 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  Future<bool> _data;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _data = getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,18 +41,18 @@ class _LoginState extends State<Login> {
           ElevatedButton(
             //comment
             onPressed: () {
-              loginCall(1)
-                  ? Navigator.pushNamed(context, '/home')
-                  : showAlertDialog(context);
+              Navigator.pushNamed(context, '/home');
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (BuildContext context) => FutureDemoPage()));
             },
             child: Text('Login'),
           ),
           Container(height: 10),
           ElevatedButton(
             onPressed: () {
-              loginCall(0)
-                  ? Navigator.pushNamed(context, '/home')
-                  : showAlertDialog(context);
+              showAlertDialog(context);
             },
             child: Text('Login Failed'),
           )
@@ -50,11 +61,10 @@ class _LoginState extends State<Login> {
     );
   }
 
-  bool loginCall(int val) {
-    if (val == 1)
+  Future<bool> getData() {
+    return Future.delayed(Duration(seconds: 2), () {
       return true;
-    else
-      return false;
+    });
   }
 
   void showAlertDialog(BuildContext context) {
@@ -82,5 +92,16 @@ class _LoginState extends State<Login> {
         return alert;
       },
     );
+  }
+
+  Future<bool> setLoginBool(bool login) async {
+    if (login) {
+      getData();
+      Future.delayed(Duration(seconds: 1), () {
+        locator<BottomNotifications>()
+            .addNotification('back to login bool,delaying 2 seconds');
+        return true;
+      });
+    } else {}
   }
 }
