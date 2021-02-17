@@ -24,7 +24,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedtab;
   @override
   Widget build(BuildContext context) {
-    var litems = Provider.of<BottomNotifications>(context);
+    var bottomNote = Provider.of<BottomNotifications>(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -256,15 +257,16 @@ class _MyHomePageState extends State<MyHomePage> {
               height: MediaQuery.of(context).size.height * 0.1,
               width: MediaQuery.of(context).size.width * 0.8,
               child: new ListView.builder(
-                  itemCount: litems.litems.length,
+                  itemCount: bottomNote.litems.length,
+                  itemExtent: 20,
                   itemBuilder: (BuildContext ctxt, int index) {
-                    return ListTile(title: new Text(litems.litems[index]));
+                    return ListTile(title: new Text( bottomNote.litems[index], style: TextStyle(fontSize: 12, color: bottomNote.colorCodes[index] )));
                   }),
             ),
             Spacer(),
             ElevatedButton(
                 onPressed: () {
-                  litems.clear();
+                  bottomNote.clear();
                 },
                 child: Text('Clear')),
             Spacer(),
