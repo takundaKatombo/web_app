@@ -7,15 +7,15 @@ class CableDrums extends StatefulWidget {
   _CableDrumsState createState() => _CableDrumsState();
 }
 
-enum Refetch { yes, no }
-
 class _CableDrumsState extends State<CableDrums> {
   List<bool> isSelected = [false, false];
   String screen = 'none';
-  Refetch _character = Refetch.no;
 
   var searchBy;
   var value = false;
+
+  bool _emptyDrumsCB = false;
+  bool _incompleteDrumsCB = true;
 
   @override
   Widget build(BuildContext context) {
@@ -152,10 +152,11 @@ class _CableDrumsState extends State<CableDrums> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.05,
+                      width: MediaQuery.of(context).size.width * 0.08,
                       child: new DropdownButton<String>(
-                        value: 'A',
-                        items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                        value: 'Choose ...',
+                        items: <String>['Choose ...', 'A', 'B', 'C', 'D']
+                            .map((String value) {
                           return new DropdownMenuItem<String>(
                             value: value,
                             child: new Text(value),
@@ -165,38 +166,32 @@ class _CableDrumsState extends State<CableDrums> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text('Empty Drums'),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(4.0),
+                  //   child: Text('Empty Drums'),
+                  // ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.15,
-                    child: ListTile(
-                      title: const Text('Yes'),
-                      leading: Radio(
-                        value: Refetch.yes,
-                        groupValue: _character,
-                        onChanged: (Refetch value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
+                    child: CheckboxListTile(
+                      title: const Text('Empty Drums'),
+                      onChanged: (bool value) {
+                        setState(() {
+                          _emptyDrumsCB = !_emptyDrumsCB;
+                        });
+                      },
+                      value: _emptyDrumsCB,
                     ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.15,
-                    child: ListTile(
-                      title: const Text('No'),
-                      leading: Radio(
-                        value: Refetch.no,
-                        groupValue: _character,
-                        onChanged: (Refetch value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
+                    child: CheckboxListTile(
+                      title: const Text('Incomplete Drums'),
+                      onChanged: (bool value) {
+                        setState(() {
+                          _incompleteDrumsCB = value;
+                        });
+                      },
+                      value: _incompleteDrumsCB,
                     ),
                   ),
                   Padding(
