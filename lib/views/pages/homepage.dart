@@ -47,12 +47,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         title: Row(
           children: [
             Offstage(
-              offstage: false,
+              offstage: isThisAuthorized('theTaskAction'),
               child: PopupMenuButton(
                 child: Text('Projects'),
                 itemBuilder: (BuildContext bc) => [
                   PopupMenuItem(
-                    enabled: false,
+                    enabled: ! isThisAuthorized('theTaskAction'),
                     child: Text("Syncable SQL"),
                     value: 'sqlpage',
                   ),
