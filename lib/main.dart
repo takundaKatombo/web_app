@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       //create: (_) => BottomNotifications(),
       value: locator<BottomNotifications>(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Web App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
