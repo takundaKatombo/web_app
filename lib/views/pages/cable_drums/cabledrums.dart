@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:web_app/Model/mock_data/dataTable.dart';
 
 class CableDrums extends StatefulWidget {
   @override
@@ -16,6 +17,10 @@ class _CableDrumsState extends State<CableDrums> {
 
   bool _emptyDrumsCB = false;
   bool _incompleteDrumsCB = true;
+  var _siteController = TextEditingController();
+  var _productController = TextEditingController();
+  var _drumController = TextEditingController();
+  var _typeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -347,204 +352,104 @@ class _CableDrumsState extends State<CableDrums> {
             Column(
               children: [
                 Container(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    height: MediaQuery.of(context).size.height,
-                    child: SingleChildScrollView(
-                      child: DataTable(
-                        showCheckboxColumn: false,
-                        columns: [
-                          DataColumn(label: Text('Site')),
-                          DataColumn(label: Text('Product')),
-                          DataColumn(label: Text('Cable Code')),
-                          DataColumn(label: Text('E')),
-                          DataColumn(label: Text('Drum Number'))
-                        ],
-                        rows: [
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  setScreen('update');
-                                  isSelected = [false, true];
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 last item ')),
-                              ]),
-                        ],
-                      ),
-                    )),
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  height: MediaQuery.of(context).size.height,
+                  child: SingleChildScrollView(
+                    child: DataTable(
+                      columnSpacing: 20,
+                      columns: [
+                        DataColumn(
+                          label: Text("Site "),
+                          numeric: false,
+                          tooltip: "",
+                        ),
+                        DataColumn(
+                          label: Text("Product"),
+                          numeric: false,
+                          tooltip: "",
+                        ),
+                        DataColumn(
+                          label: Text("Type"),
+                          numeric: false,
+                          tooltip: "",
+                        ),
+                        DataColumn(
+                          label: Text("Drum"),
+                          numeric: false,
+                          tooltip: "",
+                        ),
+                      ],
+                      rows: DataTableRepo()
+                          .getAll()
+                          .map(
+                            (tableDetail) => DataRow(cells: [
+                              DataCell(
+                                GestureDetector(
+                                  child: Text(tableDetail['Site'].toString()),
+                                  onDoubleTap: () {
+                                    _siteController.text = tableDetail['Site'];
+                                    _productController.text =
+                                        tableDetail['Product'];
+                                    _drumController.text = tableDetail['Drum'];
+                                    _typeController.text = tableDetail['type'];
+                                    setState(() {
+                                      setScreen('update');
+                                    });
+                                  },
+                                ),
+                              ),
+                              DataCell(
+                                GestureDetector(
+                                  child:
+                                      Text(tableDetail['Product'].toString()),
+                                  onDoubleTap: () {
+                                    _siteController.text = tableDetail['Site'];
+                                    _productController.text =
+                                        tableDetail['Product'];
+                                    _drumController.text = tableDetail['Drum'];
+                                    _typeController.text = tableDetail['type'];
+                                    setState(() {
+                                      setScreen('update');
+                                    });
+                                  },
+                                ),
+                              ),
+                              DataCell(
+                                GestureDetector(
+                                  child: Text(tableDetail['type'].toString()),
+                                  onDoubleTap: () {
+                                    _siteController.text = tableDetail['Site'];
+                                    _productController.text =
+                                        tableDetail['Product'];
+                                    _drumController.text = tableDetail['Drum'];
+                                    _typeController.text = tableDetail['type'];
+                                    setState(() {
+                                      setScreen('update');
+                                    });
+                                  },
+                                ),
+                              ),
+                              DataCell(
+                                GestureDetector(
+                                  child: Text(tableDetail['Drum'].toString()),
+                                  onDoubleTap: () {
+                                    _siteController.text = tableDetail['Site'];
+                                    _productController.text =
+                                        tableDetail['Product'];
+                                    _drumController.text = tableDetail['Drum'];
+                                    _typeController.text = tableDetail['type'];
+                                    setState(() {
+                                      setScreen('update');
+                                    });
+                                  },
+                                ),
+                              ),
+                            ]),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -666,24 +571,20 @@ class _CableDrumsState extends State<CableDrums> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  child: Text('Drum Number'),
+                                  child: Text('Site '),
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,
                                   width:
                                       MediaQuery.of(context).size.width * 0.2,
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,
                                   width:
                                       MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
+                                  child: TextField(
+                                    controller: _siteController,
+                                  ),
                                 )
                               ]),
                         ),
@@ -693,24 +594,20 @@ class _CableDrumsState extends State<CableDrums> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  child: Text('Product on Drum'),
+                                  child: Text('Product'),
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,
                                   width:
                                       MediaQuery.of(context).size.width * 0.2,
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,
                                   width:
                                       MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
+                                  child: TextField(
+                                    controller: _productController,
+                                  ),
                                 )
                               ]),
                         ),
@@ -720,24 +617,20 @@ class _CableDrumsState extends State<CableDrums> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  child: Text('Supplier Drum no.'),
+                                  child: Text('Type '),
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,
                                   width:
                                       MediaQuery.of(context).size.width * 0.2,
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,
                                   width:
                                       MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
+                                  child: TextField(
+                                    controller: _typeController,
+                                  ),
                                 )
                               ]),
                         ),
@@ -747,298 +640,20 @@ class _CableDrumsState extends State<CableDrums> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  child: Text('Manu Batch no.'),
+                                  child: Text('Drum'),
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,
                                   width:
                                       MediaQuery.of(context).size.width * 0.2,
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.2,
+                                  child: TextField(
+                                    controller: _drumController,
                                   ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Drum Type'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Drum Empty'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Quantity in stock'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                      ]),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Electric Speed'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Meters measured  (Actual)'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Meters Received'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Supplier'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Recieved Date'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Delivery Note no.'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
-                                )
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('Comments'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                    ),
-                                    // borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  child: TextField(),
                                 )
                               ]),
                         ),

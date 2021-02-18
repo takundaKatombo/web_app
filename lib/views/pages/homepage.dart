@@ -47,12 +47,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         title: Row(
           children: [
             Offstage(
-              offstage: isThisAuthorized('theTaskAction'),
+              offstage: false,
               child: PopupMenuButton(
                 child: Text('Projects'),
                 itemBuilder: (BuildContext bc) => [
                   PopupMenuItem(
-                    enabled: !isThisAuthorized('theTaskAction'),
+                    enabled: false,
                     child: Text("Syncable SQL"),
                     value: 'sqlpage',
                   ),
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               width: 10,
             ),
             Offstage(
-              offstage: isThisAuthorized('theTaskAction'),
+              offstage: false,
               child: PopupMenuButton(
                 child: Text('Staff'),
                 itemBuilder: (BuildContext bc) => [
@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               width: 10,
             ),
             Offstage(
-              offstage: isThisAuthorized('theTaskAction'),
+              offstage: false,
               child: PopupMenuButton(
                 child: Text('Stock Control'),
                 itemBuilder: (BuildContext bc) => [
@@ -120,12 +120,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               width: 10,
             ),
             Offstage(
-              offstage: isThisAuthorized('theTaskAction'),
+              offstage: false,
               child: PopupMenuButton(
                 child: Text('Cable Drums'),
                 itemBuilder: (BuildContext bc) => [
                   PopupMenuItem(
-                    enabled: !isThisAuthorized('theTaskAction'),
+                    enabled: true,
                     child: Text("Cable Drums"),
                     value: 'cabledrums',
                   ),
@@ -157,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               width: 10,
             ),
             Offstage(
-              offstage: isThisAuthorized('theTaskAction'),
+              offstage: false,
               child: PopupMenuButton(
                 child: Text('Cable Process'),
                 itemBuilder: (BuildContext bc) => [
@@ -193,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               width: 10,
             ),
             Offstage(
-              offstage: isThisAuthorized('theTaskAction'),
+              offstage: false,
               child: PopupMenuButton(
                 child: Text('Site Administration'),
                 itemBuilder: (BuildContext bc) => [
@@ -214,7 +214,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               width: 10,
             ),
             Offstage(
-              offstage: isThisAuthorized('theTaskAction'),
+              offstage: false,
               child: PopupMenuButton(
                 child: Text('CMS Administration'),
                 itemBuilder: (BuildContext bc) => [
@@ -235,7 +235,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               width: 10,
             ),
             Offstage(
-              offstage: isThisAuthorized('theTaskAction'),
+              offstage: false,
               child: PopupMenuButton(
                 child: Text('Help'),
                 itemBuilder: (BuildContext bc) => [
@@ -281,7 +281,16 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           ),
                         ),
                         tabs: data.map((tabName) {
-                          return Text(tabName);
+                          return GestureDetector(
+                              child: Text(tabName),
+                              onDoubleTap: () {
+                                setState(() {
+                                  _cardController.animateTo(data.length - 1);
+                                  data.remove(tabName);
+                                  _cardController = new TabController(
+                                      vsync: this, length: data.length);
+                                });
+                              });
                         }).toList(),
                       ),
                     ),
@@ -350,7 +359,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   itemCount: bottomNote.litems.length,
                   itemExtent: 20,
                   itemBuilder: (BuildContext ctxt, int index) {
-                    return ListTile(title: new Text( bottomNote.litems[index], style: TextStyle(fontSize: 12, color: bottomNote.colorCodes[index] )));
+                    return ListTile(
+                        title: new Text(bottomNote.litems[index],
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: bottomNote.colorCodes[index])));
                   }),
             ),
             Spacer(),

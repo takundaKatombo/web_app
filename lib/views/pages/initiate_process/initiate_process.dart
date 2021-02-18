@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:web_app/Model/mock_data/dataTable.dart';
 import 'package:web_app/views/pages/initiate_process/drop_down_model.dart';
 
 class InitiateProcess extends StatefulWidget {
@@ -8,8 +9,6 @@ class InitiateProcess extends StatefulWidget {
 }
 
 class _InitiateProcessState extends State<InitiateProcess> {
-  Repository repo = Repository();
-
   List<String> _site = ["Choose a site"];
   List<String> _subProjects = ["Choose Sub Project"];
   List<String> _schedule = ["Choose Schedule"];
@@ -27,32 +26,45 @@ class _InitiateProcessState extends State<InitiateProcess> {
   bool _isCheckedTransmitalcode1 = false;
 
   bool _isCheckedGreen1 = false;
-  bool _isCheckedAmber2 = false;
-  bool _isCheckedAmber1 = false;
+  bool _blueGrey1 = false;
+  bool _pink1 = false;
   bool _isCheckedRed1 = false;
   bool _isCheckedTransmitalcode2 = false;
 
   bool _isCheckedGreen2 = false;
-  bool _isCheckedAmber3 = false;
-  bool _isCheckedAmber4 = false;
+  bool _blueGrey2 = false;
+  bool _pink2 = false;
   bool _isCheckedRed2 = false;
   bool _isCheckedTransmitalcode3 = false;
 
   bool _isCheckedGreen3 = false;
-  bool _isCheckedAmber5 = false;
-  bool _isCheckedAmber6 = false;
+  bool _blueGrey3 = false;
+  bool _pink3 = false;
   bool _isCheckedRed3 = false;
 
   bool _isCheckedGreen4 = false;
   bool _isCheckedTransmitalcode4 = false;
 
-  bool _isCheckedAmber9 = false;
-  bool _isCheckedAmber8 = false;
+  bool _blueGrey4 = false;
+  bool _pink4 = false;
   bool _isCheckedRed4 = false;
+
+  bool _isCheckedGreen5 = false;
+  bool _isCheckedTransmitalcode5 = false;
+
+  bool _blueGrey5 = false;
+  bool _pink5 = false;
+  bool _isCheckedRed5 = false;
+
+  bool _source = false, _dest = false, _source1 = false, _dest1 = false;
+
+  bool _transmitalnoteLast = false, _qcsheet = false, _mergersheet = false;
+
+  List<String> rows = ['init'];
   @override
   void initState() {
-    _site = List.from(_site)..addAll(repo.getSites());
     super.initState();
+    _site = getSites();
   }
 
   @override
@@ -155,14 +167,7 @@ class _InitiateProcessState extends State<InitiateProcess> {
                         Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                scheduledd = !scheduledd;
-                                if (systemdd) {
-                                  systemdd = !systemdd;
-                                }
-                              });
-                            },
+                            onPressed: () {},
                             child: Text('Reload'),
                           ),
                         )
@@ -245,1090 +250,975 @@ class _InitiateProcessState extends State<InitiateProcess> {
               visible: systemdd,
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.12,
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text('Print Pull Slip')),
-                              Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.08,
-                                    child: CheckboxListTile(
-                                        title: Text('Transmital Note',
-                                            style: TextStyle(fontSize: 12)),
-                                        value: _isCheckedTransmitalcode1,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            _isCheckedTransmitalcode1 = val;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                  Card(
+                    elevation: 5,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: onPressed,
+                                    child: Text('Print Pull Slip')),
+                                Row(
+                                  children: [
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.1,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.red,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedRed1,
+                                          title: Text('Transmital Note',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _isCheckedTransmitalcode1,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedRed1 = val;
+                                              _isCheckedTransmitalcode1 = val;
                                             });
                                           }),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.green),
+                                          child: Checkbox(
+                                              activeColor: Colors.green,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedGreen1,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  setState(() {
+                                                    _isCheckedGreen1 = val;
+                                                  });
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber1 = val;
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.red),
+                                          child: Checkbox(
+                                              activeColor: Colors.red,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedRed1,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _isCheckedRed1 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber2,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber2 = val;
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.blueGrey),
+                                          child: Checkbox(
+                                              activeColor: Colors.blueGrey,
+                                              //title: Text('Transmital Note'),
+                                              value: _blueGrey1,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _blueGrey1 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.green,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedGreen1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              setState(() {
-                                                _isCheckedGreen1 = val;
-                                              });
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.pink),
+                                          child: Checkbox(
+                                              activeColor: Colors.pink,
+                                              //title: Text('Transmital Note'),
+                                              value: _pink1,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _pink1 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.12,
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text('Print Pull Slip')),
-                              Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.08,
-                                    child: CheckboxListTile(
-                                        title: Text('Transmital Note',
-                                            style: TextStyle(fontSize: 12)),
-                                        value: _isCheckedTransmitalcode2,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            _isCheckedTransmitalcode2 = val;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: onPressed,
+                                    child: Text('Print Term Slip')),
+                                Row(
+                                  children: [
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.1,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.red,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedRed2,
+                                          title: Text('Transmital Note',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _isCheckedTransmitalcode2,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedRed2 = val;
+                                              _isCheckedTransmitalcode2 = val;
                                             });
                                           }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.7,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber3,
+                                          title: Text('Source',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _source,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedAmber3 = val;
+                                              _source = val;
                                             });
                                           }),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.7,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber4,
+                                          title: Text('Dest',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _dest,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedAmber4 = val;
+                                              _dest = val;
                                             });
                                           }),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.green),
+                                          child: Checkbox(
+                                              activeColor: Colors.green,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedGreen2,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  setState(() {
+                                                    _isCheckedGreen2 = val;
+                                                  });
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.green,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedGreen2,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              setState(() {
-                                                _isCheckedGreen2 = val;
-                                              });
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.red),
+                                          child: Checkbox(
+                                              activeColor: Colors.red,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedRed2,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _isCheckedRed2 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.blueGrey),
+                                          child: Checkbox(
+                                              activeColor: Colors.blueGrey,
+                                              //title: Text('Transmital Note'),
+                                              value: _blueGrey2,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _blueGrey2 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.pink),
+                                          child: Checkbox(
+                                              activeColor: Colors.pink,
+                                              //title: Text('Transmital Note'),
+                                              value: _pink2,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _pink2 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.12,
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text('Print Pull Slip')),
-                              Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.08,
-                                    child: CheckboxListTile(
-                                        title: Text('Transmital Note',
-                                            style: TextStyle(fontSize: 12)),
-                                        value: _isCheckedTransmitalcode3,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            _isCheckedTransmitalcode3 = val;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: onPressed,
+                                    child: Text('Print Joints Slip')),
+                                Row(
+                                  children: [
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.1,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.red,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedRed3,
+                                          title: Text('Transmital Note',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _isCheckedTransmitalcode3,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedRed3 = val;
+                                              _isCheckedTransmitalcode3 = val;
                                             });
                                           }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.7,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber5,
+                                          title: Text('Source',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _source1,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedAmber5 = val;
+                                              _source1 = val;
                                             });
                                           }),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.7,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber6,
+                                          title: Text('Dest',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _dest1,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedAmber6 = val;
+                                              _dest1 = val;
                                             });
                                           }),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.green),
+                                          child: Checkbox(
+                                              activeColor: Colors.green,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedGreen3,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  setState(() {
+                                                    _isCheckedGreen3 = val;
+                                                  });
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.green,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedGreen3,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              setState(() {
-                                                _isCheckedGreen3 = val;
-                                              });
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.red),
+                                          child: Checkbox(
+                                              activeColor: Colors.red,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedRed3,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _isCheckedRed3 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.blueGrey),
+                                          child: Checkbox(
+                                              activeColor: Colors.blueGrey,
+                                              //title: Text('Transmital Note'),
+                                              value: _blueGrey3,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _blueGrey3 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.pink),
+                                          child: Checkbox(
+                                              activeColor: Colors.pink,
+                                              //title: Text('Transmital Note'),
+                                              value: _pink3,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _pink3 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.12,
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text('Print Pull Slip')),
-                              Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.08,
-                                    child: CheckboxListTile(
-                                        title: Text('Transmital Note',
-                                            style: TextStyle(fontSize: 12)),
-                                        value: _isCheckedTransmitalcode4,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            _isCheckedTransmitalcode4 = val;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: onPressed,
+                                    child: Text('Print Removal')),
+                                Row(
+                                  children: [
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.1,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.red,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedRed4,
+                                          title: Text('Transmital Note',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _isCheckedTransmitalcode4,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedRed4 = val;
+                                              _isCheckedTransmitalcode4 = val;
                                             });
                                           }),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.green),
+                                          child: Checkbox(
+                                              activeColor: Colors.green,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedGreen4,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  setState(() {
+                                                    _isCheckedGreen4 = val;
+                                                  });
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber8,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber8 = val;
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.red),
+                                          child: Checkbox(
+                                              activeColor: Colors.red,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedRed4,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _isCheckedRed4 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber9,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber9 = val;
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.blueGrey),
+                                          child: Checkbox(
+                                              activeColor: Colors.blueGrey,
+                                              //title: Text('Transmital Note'),
+                                              value: _blueGrey4,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _blueGrey4 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.green,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedGreen4,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              setState(() {
-                                                _isCheckedGreen4 = val;
-                                              });
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.pink),
+                                          child: Checkbox(
+                                              activeColor: Colors.pink,
+                                              //title: Text('Transmital Note'),
+                                              value: _pink4,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _pink4 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.12,
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text('Print Pull Slip')),
-                              Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.08,
-                                    child: CheckboxListTile(
-                                        title: Text('Transmital Note',
-                                            style: TextStyle(fontSize: 12)),
-                                        value: _isCheckedTransmitalcode1,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            _isCheckedTransmitalcode1 = val;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: onPressed,
+                                    child: Text('Print Disconnect ')),
+                                Row(
+                                  children: [
+                                    Container(
                                       alignment: Alignment.center,
                                       width: MediaQuery.of(context).size.width *
-                                          0.02,
+                                          0.1,
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.06,
                                       child: CheckboxListTile(
-                                          tileColor: Colors.red,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedRed1,
+                                          title: Text('Transmital Note',
+                                              style: TextStyle(fontSize: 12)),
+                                          value: _isCheckedTransmitalcode5,
                                           onChanged: (val) {
                                             setState(() {
-                                              _isCheckedRed1 = val;
+                                              _isCheckedTransmitalcode5 = val;
                                             });
                                           }),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.green),
+                                          child: Checkbox(
+                                              activeColor: Colors.green,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedGreen5,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  setState(() {
+                                                    _isCheckedGreen5 = val;
+                                                  });
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber1 = val;
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.red),
+                                          child: Checkbox(
+                                              activeColor: Colors.red,
+                                              //title: Text('Transmital Note'),
+                                              value: _isCheckedRed5,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _isCheckedRed5 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber2,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber2 = val;
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.blueGrey),
+                                          child: Checkbox(
+                                              activeColor: Colors.blueGrey,
+                                              //title: Text('Transmital Note'),
+                                              value: _blueGrey5,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _blueGrey5 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.green,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedGreen1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              setState(() {
-                                                _isCheckedGreen1 = val;
-                                              });
-                                            });
-                                          }),
+                                    Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
+                                        child: Theme(
+                                          data: ThemeData(
+                                              unselectedWidgetColor:
+                                                  Colors.pink),
+                                          child: Checkbox(
+                                              activeColor: Colors.pink,
+                                              //title: Text('Transmital Note'),
+                                              value: _pink5,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _pink5 = val;
+                                                });
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.12,
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text('Print Pull Slip')),
-                              Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.08,
-                                    child: CheckboxListTile(
-                                        title: Text('Transmital Note',
-                                            style: TextStyle(fontSize: 12)),
-                                        value: _isCheckedTransmitalcode1,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            _isCheckedTransmitalcode1 = val;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.red,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedRed1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedRed1 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber1 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber2,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber2 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.green,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedGreen1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              setState(() {
-                                                _isCheckedGreen1 = val;
-                                              });
-                                            });
-                                          }),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: onPressed,
+                                    child: Text('Print QC Sheet')),
+                                Container(
+                                  alignment: Alignment.center,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                  child: CheckboxListTile(
+                                      title: Text('Transmital Note',
+                                          style: TextStyle(fontSize: 12)),
+                                      value: _transmitalnoteLast,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          _transmitalnoteLast = val;
+                                        });
+                                      }),
+                                ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                  child: CheckboxListTile(
+                                      title: Text('QC Sheet',
+                                          style: TextStyle(fontSize: 12)),
+                                      value: _qcsheet,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          _qcsheet = val;
+                                        });
+                                      }),
+                                ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                  child: CheckboxListTile(
+                                      title: Text('Merger Sheet',
+                                          style: TextStyle(fontSize: 12)),
+                                      value: _mergersheet,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          _mergersheet = val;
+                                        });
+                                      }),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.12,
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text('Print Pull Slip')),
-                              Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.08,
-                                    child: CheckboxListTile(
-                                        title: Text('Transmital Note',
-                                            style: TextStyle(fontSize: 12)),
-                                        value: _isCheckedTransmitalcode1,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            _isCheckedTransmitalcode1 = val;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.red,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedRed1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedRed1 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber1 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber2,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber2 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.green,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedGreen1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              setState(() {
-                                                _isCheckedGreen1 = val;
-                                              });
-                                            });
-                                          }),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: onPressed,
+                                    child: Text('Print Merger Sheet')),
+                                new DropdownButton<String>(
+                                  value: 'Choose ...',
+                                  items: <String>[
+                                    'Choose ...',
+                                    'Opt 1',
+                                    'Opt 2',
+                                    'Opt 3'
+                                  ].map((String value) {
+                                    return new DropdownMenuItem<String>(
+                                      value: value,
+                                      child: new Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (_) {
+                                    setState(() {
+                                      systemdd = !systemdd;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.12,
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ElevatedButton(
-                                  onPressed: onPressed,
-                                  child: Text('Print Pull Slip')),
-                              Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.1,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.08,
-                                    child: CheckboxListTile(
-                                        title: Text('Transmital Note',
-                                            style: TextStyle(fontSize: 12)),
-                                        value: _isCheckedTransmitalcode1,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            _isCheckedTransmitalcode1 = val;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.red,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedRed1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedRed1 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber1 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.amber,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedAmber2,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _isCheckedAmber2 = val;
-                                            });
-                                          }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.02,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
-                                      child: CheckboxListTile(
-                                          tileColor: Colors.green,
-                                          //title: Text('Transmital Note'),
-                                          value: _isCheckedGreen1,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              setState(() {
-                                                _isCheckedGreen1 = val;
-                                              });
-                                            });
-                                          }),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Center(
+                            child: ElevatedButton(
+                                onPressed: onPressed,
+                                child: Text('Print Drawings')),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * 0.5,
                     child: SingleChildScrollView(
-                      child: DataTable(
-                        showCheckboxColumn: true,
-                        onSelectAll: (bool) => print('all rows selected'),
-                        columns: [
-                          DataColumn(label: Text('Site')),
-                          DataColumn(label: Text('Product')),
-                          DataColumn(label: Text('Cable Code')),
-                          DataColumn(label: Text('E')),
-                          DataColumn(label: Text('Drum Number'))
-                        ],
-                        rows: [
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                          DataRow(
-                              onSelectChanged: (selected) {
-                                setState(() {
-                                  // setScreen('update');
-                                });
-                              },
-                              cells: [
-                                DataCell(Text('Kusite')),
-                                DataCell(Text('HVVT56Y(500mm)')),
-                                DataCell(Text('HVVT56Y')),
-                                DataCell(Text('E')),
-                                DataCell(Text('00654 ')),
-                              ]),
-                        ],
-                      ),
-                    ),
+                        child: DataTable(
+                      showCheckboxColumn: true,
+                      columnSpacing: 20,
+                      columns: [
+                        DataColumn(
+                          label: Text("Site "),
+                          numeric: false,
+                          tooltip: "",
+                        ),
+                        DataColumn(
+                          label: Text("Product"),
+                          numeric: false,
+                          tooltip: "",
+                        ),
+                        DataColumn(
+                          label: Text("Type"),
+                          numeric: false,
+                          tooltip: "",
+                        ),
+                        DataColumn(
+                          label: Text("Drum"),
+                          numeric: false,
+                          tooltip: "",
+                        ),
+                      ],
+                      rows: DataTableRepo()
+                          .getAll()
+                          .map(
+                            (equipeDetail) => DataRow(
+                                selected: rows != null
+                                    ? rows.contains(
+                                        equipeDetail['Product'].toString())
+                                    : false,
+                                onSelectChanged: (bool selected) {
+                                  print(rows);
+                                  setState(() {
+                                    if (selected) {
+                                      rows.add(
+                                          equipeDetail['Product'].toString());
+                                    } else {
+                                      rows.remove(
+                                          equipeDetail['Product'].toString());
+                                    }
+                                  });
+                                },
+                                cells: [
+                                  DataCell(
+                                    Text(equipeDetail['Site'].toString()),
+                                  ),
+                                  DataCell(
+                                    Text(equipeDetail['Product'].toString()),
+                                  ),
+                                  DataCell(
+                                    Text(equipeDetail['type'].toString()),
+                                  ),
+                                  DataCell(
+                                    Text(equipeDetail['Drum'].toString()),
+                                  ),
+                                ]),
+                          )
+                          .toList(),
+                    )),
                   ),
                 ],
               ),
@@ -1341,19 +1231,15 @@ class _InitiateProcessState extends State<InitiateProcess> {
 
   void _onSelectedMainProject(String value) {
     setState(() {
-      _selectedMainProject = "Choose Main Project";
-      _mainProjects = ["Choose Main Project"];
       _selectedMainProject = value;
-      _mainProjects = List.from(_site)..addAll(repo.getProjects(_selectedSite));
+      _subProjects = getSubProject(_selectedMainProject);
     });
   }
 
   void _onSelectedSite(String value) {
     setState(() {
-      _selectedSite = "Choose Site";
-      _site = ["Choose Site"];
       _selectedSite = value;
-      _site = List.from(_site)..addAll(repo.getSites());
+      _mainProjects = getProjects(_selectedSite);
     });
   }
 
@@ -1361,132 +1247,65 @@ class _InitiateProcessState extends State<InitiateProcess> {
 
   _onSelectedSchedule(String value) {
     setState(() {
-      _selectedSchedule = "Choose Main Project";
-      _schedule = ["Choose Main Project"];
       _selectedSchedule = value;
-      //_schedule = List.from(_subProjects)..addAll(repo.getSchedule(value,_selectedS));
+      scheduledd = !scheduledd;
+      if (systemdd) {
+        systemdd = !systemdd;
+      }
     });
   }
 
   _onSelectedSubProject(String value) {
     setState(() {
-      _selectedSubProjects = "Choose Sub Project";
-      _subProjects = ["Choose Sub Project"];
       _selectedSubProjects = value;
-      _subProjects = List.from(_mainProjects)
-        ..addAll(repo.getSubProject(value));
+      _schedule = getSchedule(_selectedSubProjects);
     });
   }
-}
 
-class Repository {
-  List<Map> getAll() => _menuItems;
+  List<String> getSchedule(String subProject) {
+    if (subProject != "Choose Sub Project")
+      return [
+        "Choose Schedule",
+        "Schedule 1",
+        "Schedule 2",
+        "Schedule 3",
+        "Schedule 4",
+        "Schedule 5",
+      ];
+    else
+      return null;
+  }
 
-  getSchedule(String site, String subProject) => _menuItems
-      .map((map) => StateModel.fromJson(map))
-      .where((item) => item.subproject.contains(subProject))
-      .map((item) => item.subproject)
-      .expand((i) => i)
-      .toList();
+  List<String> getSubProject(String project) {
+    if (project != "Choose Project")
+      return [
+        "Choose Sub Project",
+        "Sub Project 1",
+        "Sub Project 2",
+        "Sub Project 3",
+        "Sub Project 4",
+        "Sub Project 5",
+      ];
+    else
+      return null;
+  }
 
-  getSubProject(String site) => _menuItems
-    ..map((map) => StateModel.fromJson(map))
-        .where((item) => item.site == site)
-        .map((item) => item.subproject)
-        .toList();
+  List<String> getProjects(String site) {
+    if (site != "Choose Site")
+      return [
+        "Choose Main Project",
+        "Main Project 1",
+        "Main Project 2",
+        "Main Project 3",
+        "Main Project 4",
+        "Main Project 5",
+      ];
+    else
+      return null;
+  }
 
-  List<String> getProjects(String site) => _menuItems
-      .map((map) => StateModel.fromJson(map))
-      .where((item) => item.site == site)
-      .map((item) => item.mainproject)
-      .toList();
+  List<String> getSites() =>
+      ["Choose a site", "Site 1", "Site 2", "Site 3", "Site 4", "Site 5"];
 
-  List<String> getSites() => _menuItems
-      .map((map) => StateModel.fromJson(map))
-      .map((item) => item.site)
-      .toList();
-
-  List _menuItems = [
-    {
-      "site": "site 1",
-      "mainproject": "main project 1",
-      "subproject": [
-        {
-          "1sub project 1": [
-            "1schedule 1",
-            "1schedule 2",
-            "1schedule 3",
-          ],
-          "1sub project 2": [
-            "1schedule 1",
-            "1schedule 2",
-            "1schedule 3",
-          ],
-          "1sub project 3": [
-            "1schedule 1",
-            "1schedule 2",
-            "1schedule 3",
-          ],
-        }
-      ],
-    },
-    {
-      "site": "site 2",
-      "mainproject": "main project 2",
-      "subproject": [
-        {
-          "2sub project 1": {
-            "schedule": [
-              "2schedule 1",
-              "2schedule 2",
-              "2schedule 3",
-            ],
-          },
-          "2sub project 2": {
-            "schedule": [
-              "2schedule 1",
-              "2schedule 2",
-              "2schedule 3",
-            ],
-          },
-          "2sub project 3": {
-            "schedule": [
-              "2schedule 1",
-              "2schedule 2",
-              "2schedule 3",
-            ],
-          }
-        }
-      ],
-    },
-    {
-      "site": "site 3",
-      "mainproject": "main project 3",
-      "subproject": [
-        {
-          "3sub project 1": {
-            "schedule": [
-              "3schedule 1",
-              "3schedule 2",
-              "3schedule 3",
-            ],
-          },
-          "3sub project 2": {
-            "schedule": [
-              "3schedule 1",
-              "3schedule 2",
-              "3schedule 3",
-            ],
-          },
-          "3sub project 3": {
-            "schedule": [
-              "3schedule 1",
-              "3schedule 2",
-              "3schedule 3",
-            ],
-          }
-        }
-      ],
-    },
-  ];
+  onSelectedRow(bool selected, String row) {}
 }
