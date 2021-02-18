@@ -1,0 +1,5 @@
+{
+  "client": "KUSILE",
+  "LOGLEVEL": "error",
+  "databaseDateFormat": "YYYY-MM-DD"
+}
