@@ -52,7 +52,7 @@ Future<TransportJson> httpPost(String strData, String endPoint) async {
 ///  Casting Example
 ///     List<StaffDepartmentData> itemsList = elements.map((i) => StaffDepartmentData.fromJson(i)).toList();
 ///     print('Staff Department Name : ${itemsList[0].department_name}');
-Future<List> getElementsFromServer({bool isPost,List<dynamic> entityElements , String endPoint, String methodToCall, String whereClause})
+Future<List> getElementsFromServer({bool isPost,List<dynamic> entityElements , String endPoint, String methodToCall, String whereClause, bool ignoreServerSideActiveRestriction})
 async {
 
   try {
@@ -61,7 +61,7 @@ async {
 
     if (isPost)
       {
-        TransportJson  transObj = buildTransportJson(entityElements: entityElements,method_to_call: methodToCall, whereClause: whereClause);
+        TransportJson  transObj = buildTransportJson(entityElements: entityElements,method_to_call: methodToCall, whereClause: whereClause, ignoreServerSideActiveRestriction: ignoreServerSideActiveRestriction);
         String jsonStr = jsonEncode(transObj);
         relsultTransObj = await httpPost(jsonStr, endPoint);
       }
@@ -96,7 +96,7 @@ async {
 /*
 Build a transport object, this includes encrypted json if ConfigData().encrypt == true
  */
-TransportJson buildTransportJson({List<dynamic> entityElements, String method_to_call, String whereClause } )
+TransportJson buildTransportJson({List<dynamic> entityElements, String method_to_call, String whereClause ,bool ignoreServerSideActiveRestriction} )
 {
   String whereClause2 = whereClause?.isEmpty ?? true ? "": whereClause;
   if (( ConfigData().masterMachineName == "") || (ConfigData().site_id == -1 ) || (ConfigData().master_site_id == -1))
@@ -108,6 +108,6 @@ TransportJson buildTransportJson({List<dynamic> entityElements, String method_to
   else
   {
    // if (entityElements == null ) entityElements = [] ;
-    return TransportJson(entityElements: entityElements, site_id : ConfigData().site_id, master_site_id: ConfigData().master_site_id ,method_to_call: method_to_call, whereClause: whereClause2);
+    return TransportJson(entityElements: entityElements, site_id : ConfigData().site_id, master_site_id: ConfigData().master_site_id ,method_to_call: method_to_call, whereClause: whereClause2, ignoreServerSideActiveRestriction: ignoreServerSideActiveRestriction);
   }
 }

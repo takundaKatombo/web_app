@@ -2,6 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:web_app/Model/mock_data/dataTable.dart';
+import 'package:web_app/model/ConfigData.dart';
+import 'package:web_app/model/stock/CableDrumsData.dart';
+import 'package:web_app/model/stock/MaterialGroupLuData.dart';
+import 'package:web_app/model/stock/ProductsData.dart';
+import 'package:web_app/model/stock/SuppliersData.dart';
+import 'package:web_app/services/locator.dart';
+import 'package:web_app/utils/Constants.dart';
+import 'package:web_app/utils/FieldMappings.dart';
+import 'package:web_app/utils/Transmission.dart';
+import 'package:web_app/controllers/bottomnotifications.dart';
 
 class CableDrums extends StatefulWidget {
   @override
@@ -15,12 +25,25 @@ class _CableDrumsState extends State<CableDrums> {
   var searchBy;
   var value = false;
 
+
   bool _emptyDrumsCB = false;
   bool _incompleteDrumsCB = true;
   var _siteController = TextEditingController();
   var _productController = TextEditingController();
   var _drumController = TextEditingController();
   var _typeController = TextEditingController();
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
+  //Paul vars
+  String cablesGroupID = "" ;
+  List<SuppliersData> supplierList = [];
+  List<ProductsData> stockInProductsList = [];
+  List<CableDrumsData> entitiesList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +225,7 @@ class _CableDrumsState extends State<CableDrums> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: (){ getEntitiesList(whereClause: '', nativeQuery: false) ;},
                       child: Text('Re Fetch'),
                     ),
                   ),
@@ -687,4 +710,125 @@ class _CableDrumsState extends State<CableDrums> {
   void onpressed() {}
 
   void onPressed() {}
+
+
+  //Paul Code
+
+  void init() async
+  {
+    //todo Busy indicator start
+    List<dynamic> entityElements = [] ; // [sqlUpdateText];
+    ///    // er({bool issPost,List<dynamic> entityElements , String endPoint, String methodToCall})
+    String whereClause = " m."+ FieldMappings().MATERIAL_GROUP_LU_GROUP_CONSTANT_ID + " = " + Constants.CONSTANT_ID_MATERIAL_GROUP_CABLE.toString() ;
+    List resultElements = await getElementsFromServer(isPost: true, entityElements: entityElements, endPoint: ConfigData().listSiteControlURL, methodToCall: Constants.METHOD_MATERIAL_GROUP_LIST, whereClause: whereClause);
+    if (resultElements != null)
+    {
+      MaterialGroupLuData mg = MaterialGroupLuData.fromJson(resultElements[0]);
+      cablesGroupID = mg.mat_group_id ;
+      /*for (int i=0 ; i< resultElements.length ; i++)
+      {
+        //Todo Populate some field if required
+        //Todo add message to status window??
+        //litems.addNotification('Execute pressed ') ;
+        MaterialGroupLuData mg = MaterialGroupLuData.fromJson(resultElements[i]);
+        print("TWO: "+mg.description);
+      }*/
+
+      //No need to get
+      getSuppliersList();
+
+    }
+
+  }
+  void getSuppliersList() async
+  {
+    String whereClause  = '';
+    supplierList.clear();
+    if (cablesGroupID != null)
+    {
+      whereClause  = "m.mat_group_id='"  +cablesGroupID+"'" ;
+    }
+    List resultElements = await getElementsFromServer(isPost: true, entityElements: [] , endPoint: ConfigData().siteControlURL, methodToCall: Constants.METHOD_SUPPLIERS_LIST_BY_MAT_GROUP, whereClause: whereClause);
+    supplierList = resultElements.map((i) => SuppliersData.fromJson(i)).toList();
+    getListOfProductsByWhere("");
+  }
+  void getListOfProductsByWhere(String whereClause) async
+  {
+    stockInProductsList.clear();
+
+    List resultElements = await getElementsFromServer(isPost: true, entityElements: [] , endPoint: ConfigData().listSiteControlURL, methodToCall: Constants.METHOD_PRODUCTS_LIST, whereClause: whereClause);
+    stockInProductsList = resultElements.map((i) => ProductsData.fromJson(i)).toList();
+    //todo Busy indicator stop
+    //print("pause");
+  }
+  // Get the relavent entities for this page
+  void getEntitiesList({String whereClause, bool nativeQuery}) async
+  {
+    //todo Busy indicator start
+
+    entitiesList.clear();
+    bool ignoreServerSideActiveRestriction = false;
+    //Todo -- need to execute below if "Non-Active is selected on Datagrid"
+    /*if (dataGrid != null)
+    {
+
+      if (dataGrid.showDeletedCB.selected)
+      {
+        if (whereClause != "" ) whereClause += " and " ;
+        whereClause += "m.active='N'";
+        ignoreServerSideActiveRestriction = true ;
+      }
+    }
+
+     */
+
+
+
+    //build additional whereClause
+    //   i
+    //if (( incompleteDrums.selected) && ( emptyDrumsCB == 'yes')
+    if (( _incompleteDrumsCB) && ( _emptyDrumsCB))
+    {
+      ; //Dont do any where clause on this field
+    }
+    else
+    {
+      if ( _incompleteDrumsCB)
+      {
+        if (whereClause != "" ) whereClause += " and " ;
+        whereClause += "m."+FieldMappings().CABLE_DRUMS_DRUM_EMPTY +"='N'" ;
+      }
+
+      if ( _emptyDrumsCB)
+      {
+        if (whereClause != "" ) whereClause += " and " ;
+        whereClause += "m."+FieldMappings().CABLE_DRUMS_DRUM_EMPTY +"='Y'" ;
+      }
+    }
+//todo get sitePicker working
+    // Single Site Picker
+    /* if (sitePicker.visible)
+    {
+
+      if ( sitePicker.selectedSiteID > 0)
+      {
+        transJson.sitePickerCallSingle = true ;
+        transJson.sitePickerSelectedSiteId = sitePicker.selectedSiteID ;
+
+      }
+    }
+    */
+    print("WhereClause : "+whereClause);
+
+    List resultElements = [] ;
+    if (nativeQuery)  resultElements = await getElementsFromServer(isPost: true, entityElements: [] , endPoint: ConfigData().nativeQueriesURL +"cableDrumsNativeQuery", methodToCall: Constants.METHOD_CABLE_DRUMS_LIST, whereClause: whereClause, ignoreServerSideActiveRestriction: ignoreServerSideActiveRestriction);
+    else  resultElements = await getElementsFromServer(isPost: true, entityElements: [] , endPoint: ConfigData().listSiteControlURL, methodToCall: Constants.METHOD_CABLE_DRUMS_LIST, whereClause: whereClause, ignoreServerSideActiveRestriction: ignoreServerSideActiveRestriction);
+
+    entitiesList = resultElements.map((i) => CableDrumsData.fromJson(i)).toList();
+   // print(whereClause);
+    print("Length: "+entitiesList.length.toString());
+    //Todo busy indicator stop
+    locator<BottomNotifications>().addNotification('Cable drums list Successful',true);
+  }
+
 }

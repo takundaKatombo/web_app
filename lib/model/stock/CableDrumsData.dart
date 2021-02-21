@@ -1,4 +1,6 @@
 
+import 'package:web_app/utils/GeneralUtils.dart';
+
 class CableDrumsData {
 
   String bin_id ;
@@ -52,7 +54,7 @@ class CableDrumsData {
         this.main_project_name, this.drum_number,this.product_name, this.manu_batch_num, this.supplier_drum_no,this.username, this.electric_speed,
         this.active, this.meters_measured,this.meters_received, this.flags, this.site_id, this.cable_code,this.condition, this.prev_drum_number,
         this.mat_group_id, this.trans_type_constant_id,this.invoice_period, this.invoice_value, this.trans_type_name,this.invoiced,
-        this.mds_rate, this.mds_status,this.empty_verified, this.supplier_id, this.supplier_name, this.delivery_note_no,this.receive_date,
+        this.mds_rate, this.mds_status,this.empty_verified, this.supplier_id, this.supplier_name, this.delivery_note_no,this.receive_date ,
         this.comments, this.DSP_receive_date,this.invoice_method, this.site_name
       }
       ) {  }
@@ -128,7 +130,11 @@ class CableDrumsData {
     {
       temp_site_name = inputJson["site_name"];
     }
-
+    DateTime receiveDate = null;
+    if (inputJson.containsKey("receive_date"))
+    {
+      receiveDate = dateFromString(inputJson["receive_date"]);
+    }
     return CableDrumsData(
         product_name: temp_product_name ,
         cable_code: temp_cable_code ,
@@ -167,7 +173,7 @@ class CableDrumsData {
         supplier_name: inputJson["supplier_name"] ,
         delivery_note_no: inputJson["delivery_note_no"] ,
         comments: inputJson["comments"] ,
-        receive_date: inputJson["receive_date"] ,  //CMS3_GUI.globalData.dateFromString
+        receive_date: receiveDate ,
         DSP_receive_date: "needToFixStill", // receive_date ,  //CMS3_GUI.globalData.prettyDateDisplay
 
 

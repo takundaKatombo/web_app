@@ -1,5 +1,4 @@
-
-
+import 'package:intl/intl.dart';
 import 'package:web_app/model/ConfigData.dart';
 
 bool isThisAuthorized(String methodToCall)
@@ -17,4 +16,21 @@ bool isThisAuthorized(String methodToCall)
     }
   }
   return true ; // Dont show componet ie DO move OffStage
+}
+
+
+/**
+ * This makes the time 00:00:00
+ */
+DateTime dateFromString(String dateStr)
+{
+
+  DateTime formatter = DateFormat('EEE, d MMM yyyy HH:mm:ss').parse(dateStr);
+// Option2 - also works
+/*  dateStr += " GMT";
+  DateTime parsedDate = HttpDate.parse(dateStr);
+  */
+  return formatter ;
+
+
 }

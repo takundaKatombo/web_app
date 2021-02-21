@@ -16,8 +16,9 @@ void afterConfig(Object f) async
 {
   // temp_SetLoggedInUser(); //Todo temp function until login sorted
 
+  /*
   String configFileLevel = "Level."+GlobalConfiguration().get("LOGLEVEL");
-  /*for (int i=0 ; i< Level.values.length ; i++)
+  for (int i=0 ; i< Level.values.length ; i++)
   {
     if ( configFileLevel== Level.values[i].toString())
     {
@@ -26,7 +27,7 @@ void afterConfig(Object f) async
     }
   }
   */
- // await SiteInit().initApp();
+  await SiteInit().initApp();
 }
 class MyApp extends StatelessWidget {
   @override

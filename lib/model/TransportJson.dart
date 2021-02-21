@@ -13,6 +13,7 @@ class TransportJson {
   String site_name ;
   String whereClause ;
   String encryptionObject ;
+  bool ignoreServerSideActiveRestriction ;
   ResultObject resultsStatus ;
  // bool resultSuccess ;
  // String resultDescription ;
@@ -20,7 +21,7 @@ class TransportJson {
   TransportJson(
       {this.entityElements , this.site_id = -1 , this.master_site_id = -1,
         this.method_to_call, this.site_name = '' , this.whereClause = '' ,this.encryptionObject = '',
-        this.resultsStatus = null  })
+        this.resultsStatus = null, ignoreServerSideActiveRestriction = false  })
     {
       if (ConfigData().encrypt)
         this.encryptionObject = doEncAndBase64();
@@ -37,7 +38,8 @@ class TransportJson {
         'site_name': site_name,
         'whereClause': whereClause,
         'encryptionObject': encryptionObject,
-        'resultsStatus': resultsStatus
+        'resultsStatus': resultsStatus,
+        'ignoreServerSideActiveRestriction' : ignoreServerSideActiveRestriction
 
       };
 
@@ -51,6 +53,7 @@ class TransportJson {
       site_name: json['site_name'],
       whereClause: json['whereClause'],
       encryptionObject: json['encryptionObject'],
+      ignoreServerSideActiveRestriction: json['ignoreServerSideActiveRestriction'],
       resultsStatus: resultObj,
 
     );
